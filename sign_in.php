@@ -1,3 +1,10 @@
+<?php 
+session_start();
+include('server.php');
+$errors = array();
+$query = "SELECT * FROM users WHERE username = '$username'";
+$result = mysqli_query($conn, $query);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +49,7 @@
                     </li>
                     <!--sign in button-->
                     <il class="nav-item">
-                        <a href="sign_in.php"><button class="btn btn-light rounded-pill text-pink ms-3 me-3" type="button">Sign In</button></a>
+                        <a href="sign_in.php"><button class="btn btn-light rounded-pill text-pink ms-3 me-3" type="button" name = "login_user">Sign In</button></a>
                     </il>
                 </ul>
             </div>  
@@ -71,7 +78,7 @@
                             </div>
                             <a href="#" class="white-link" ><p class=" text-end mt-2 ">Forget Password?</p></a>
                             <div class="col-sm-12 d-flex justify-content-center ">
-                                <button class="btn btn-dark rounded-pill btn-long" type="submit" name="submit">Log In</button>
+                                <button class="btn btn-dark rounded-pill btn-long" type="submit" name="login_user">Log In</button>
                             </div>     
                         </form>
                     </div>
@@ -84,8 +91,53 @@
             </div>
         </div>
     </div>
-
     <!--footer-->    
     <div class="footer footer-green fixed-bottom"></div>
 </body>
+<!--- php --->
+<?php if (isset($_SESSION['error'])) :?>
+            <div class="error">
+                <h3>
+                <?php
+                    echo $_SESSION['error'];
+                    unset($_SESSION['error']);
+                ?>
+<?php 
+    if (isset($_POST['login_user']))
+        $username = mysqli_real_escape_string($conn, $_POST['username']);
+        $password = mysqli_real_escape_string($conn, $_POST['password']);
+
+        if (empty($username)) {
+            array_push($errors, "Username is required");
+        }
+
+        if (empty($password)) {
+            array_push($errors, "Password is required");
+        }
+
+        if (count($errors) == 0) {
+            $password = md5($password);
+            $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+            $result = mysqli_query($conn, $query);
+
+
+            if (mysqli_num_rows($result) == 1) {  //เช็คว่าชื่อกับรหัสตรงกับ db ไหม
+                $row = mysqli_fetch_array($result);
+                $_SESSION['username'] = $username;
+                $_SESSION['role'] = $row['role'];
+
+                if ($_SESSION['username'] == $username) {
+                    header("location: index.php");
+                } else {
+                    array_push($errors, "Wrong Username or Password");
+                    $_SESSION['error'] = "Wrong Username or Password!";
+                    header("location: sign_in.php");
+                }
+    }else{
+        array_push($errors,"Username or password can't be blank");
+        $_SESSION['error'] = "Username or password can't be blank!";
+        header("location: sign_in.php");
+    }
+}
+?>
 </html>
