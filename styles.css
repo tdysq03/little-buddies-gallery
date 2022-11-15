@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+
+/*navbar*/
+.navbar{
+    transition: all 0.5s;
+}
+.navbar-bg-pink{      
+    border-bottom: 10px solid #FFC98B;
+    background-color: #E79796;
+    
+}
+a.nav-link:link, a.nav-link:visited {
+  background-color: transparent;
+  text-decoration: none;
+}
+a.nav-link:active {
+  background-color: #DE5B6D;
+  text-decoration: none;
+} 
+.dropdown-item:active {
+  background-color:#FFC98B ;
+}
+
+/*body*/
+body{
+    background-color: #FFF2F0;
+    margin-bottom: 40px;
+    font-family: 'Kanit', sans-serif;
+}
+.container{
+    margin-top: 50px;
+    padding: 50px 50px 0px 50px;
+    background-color: white;
+}
+.orange-card{
+    background-color:#FFB284; 
+    color: white;
+    
+}
+.pink-card{
+    background-color: #DE5B6D; 
+    color: white;   
+}
+
+hr { 
+    background-color: transparent;
+    border-top: 5px dotted #7287A0;
+}
+.round{
+    border-radius: 25px;
+}
+
+/*change text color*/
+.form-control::-webkit-input-placeholder {
+    color: #E79796;
+}
+.text-pink{
+    color: #E79796;
+}
+
+/*button*/
+.btn-long{
+    width: 200px;
+}
+.btn-blue{
+    color: white;
+    background-color:  #7287A0;
+}
+
+/*a link*/
+a:link, a:visited {
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:hover, a:active {
+    color:tomato;
+    background-color: transparent;
+    text-decoration: none;
+}
+a.white-link:link, a.white-link:visited {
+  color: white;
+  text-decoration: none;
+}
+a.white-link:hover, a.white-link:active {
+  color:tomato;
+  text-decoration: none;
+} 
+
+
+/*footer*/
+.footer-green{
+    height: 40px;
+    background-color: #C6C09c;
+    transition: all 0.5s;
+}
+.footer-pink{
+    height: 40px;
+    background-color: #E79796;
+    transition: all 0.5s;
+}
