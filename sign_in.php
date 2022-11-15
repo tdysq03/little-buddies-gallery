@@ -46,7 +46,7 @@ include('server.php');
                     </li>
                     <!--sign in button-->
                     <il class="nav-item">
-                        <a href="sign_in.php"><button = button class="btn btn-light rounded-pill text-pink ms-3 me-3">Sign In</button></a>
+                        <a href="sign_in.php"><button class="btn btn-light rounded-pill text-pink ms-3 me-3">Sign In</button></a>
                     </il>
                 </ul>
             </div>  
@@ -64,16 +64,20 @@ include('server.php');
                     <div class="card-body p-3 m-4">
                         <h2 class="text-center">Welcome back</h2>
                         <p class="text-center">Log in to your existant account</p>
+
                         <?php if (isset($_SESSION['error'])) :?>
-                            <div class="error text-center">
-                                <h3>
+                            <div class="alert alert-warning alert-dismissible fade show round" role="alert">
+                            <h4 class="alert-heading">
                                 <?php
                                     echo $_SESSION['error'];
                                     unset($_SESSION['error']);
                                 ?>
-                                </h3>
+                            </h4>
+                            <hr>Please try again
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         <?php endif ?>
+
                         <form action = "login_db.php" method = "post">
                             <div class="form-group">
                                 <label for="username" class="col-form-label">Username :</label>                                
