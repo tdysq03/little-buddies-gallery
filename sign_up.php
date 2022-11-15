@@ -12,7 +12,6 @@
     <title>Sign up</title>
 </head>
 <body>
-
     <!--navbar-->
     <nav class="navbar navbar-expand-sm navbar-dark navbar-bg-pink fixed-top">
         <div class="container-fluid">
