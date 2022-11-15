@@ -95,13 +95,14 @@ $result = mysqli_query($conn, $query);
     <div class="footer footer-green fixed-bottom"></div>
 </body>
 <!--- php --->
-<?php if (isset($_SESSION['error'])) :?>
-            <div class="error">
-                <h3>
-                <?php
-                    echo $_SESSION['error'];
-                    unset($_SESSION['error']);
-                ?>
+<?php $errors = array(); ?>
+<?php if (count($errors) > 0) : ?>
+    <div class="error">
+        <?php foreach ($errors as $errors): ?>
+            <p><?php echo $error ?></p>
+        <?php endforeach ?>
+    </div>
+<?php endif ?>
 <?php 
     if (isset($_POST['login_user']))
         $username = mysqli_real_escape_string($conn, $_POST['username']);
