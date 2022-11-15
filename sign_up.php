@@ -62,7 +62,7 @@
                     <div class="card-body p-3 m-4">
                         <h2 class="text-center">Sign up</h2>
                         <p class="text-center">Already a member?<a href="sign_in.php" class="white-link"><b> Sign in</b></a></p>
-                        <form>
+                        <form action = "register_db.php" method = "post">
                             <div class="form-group">
                                 <label for="inputPassword" class="col-form-label">E-mail :</label>           
                                 <input type="text" class="form-control rounded-pill"  placeholder="e-mail">

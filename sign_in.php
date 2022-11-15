@@ -64,6 +64,16 @@ include('server.php');
                     <div class="card-body p-3 m-4">
                         <h2 class="text-center">Welcome back</h2>
                         <p class="text-center">Log in to your existant account</p>
+                        <?php if (isset($_SESSION['error'])) :?>
+                            <div class="error text-center">
+                                <h3>
+                                <?php
+                                    echo $_SESSION['error'];
+                                    unset($_SESSION['error']);
+                                ?>
+                                </h3>
+                            </div>
+                        <?php endif ?>
                         <form action = "login_db.php" method = "post">
                             <div class="form-group">
                                 <label for="username" class="col-form-label">Username :</label>                                
