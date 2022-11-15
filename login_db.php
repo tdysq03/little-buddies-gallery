@@ -1,7 +1,6 @@
 <?php 
     session_start();
     include('server.php');
-
     $errors = array();
 
     if (isset($_POST['login_user'])) {
@@ -18,22 +17,30 @@
 
         if (count($errors) == 0) {
             $password = md5($password);
-            $query = "SELECT * FROM user WHERE username = '$username' AND password = '$password' ";
+            $query = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
             $result = mysqli_query($conn, $query);
 
-            if (mysqli_num_rows($result) == 1) {
+
+            if (mysqli_num_rows($result) == 1) {  //เช็คว่าชื่อกับรหัสตรงกับ db ไหม
+                $row = mysqli_fetch_array($result);
                 $_SESSION['username'] = $username;
-                header("location: index.php");
+                $_SESSION['role'] = $row['role'];
+
+                if ($_SESSION['role'] == 'Admin') {
+                    header("location: index.php");
+                }else{
+                    header("location: sign_up.php");
+                }
+                
             } else {
                 array_push($errors, "Wrong Username or Password");
                 $_SESSION['error'] = "Wrong Username or Password!";
-                header("location: test.php");
+                header("location: sign_in.php");
             }
-        } else {
-            array_push($errors, "Username & Password is required");
-            $_SESSION['error'] = "Username & Password is required";
-            header("location: test.php");
-        }
+    }else{
+        array_push($errors,"Username or password can't be blank");
+        $_SESSION['error'] = "Username or password can't be blank!";
+        header("location: sign_in.php");
     }
-
+}
 ?>

@@ -65,15 +65,15 @@
                         <form>
                             <div class="form-group">
                                 <label for="inputPassword" class="col-form-label">E-mail :</label>           
-                                <input type="text" class="form-control rounded-pill" id="inputPassword" placeholder="e-mail">
+                                <input type="text" class="form-control rounded-pill"  placeholder="e-mail">
                             </div>
                             <div class="form-group">
                                 <label for="inputPassword" class="col-form-label">Username :</label>
-                                <input type="text" class="form-control rounded-pill" id="inputPassword" placeholder="username">
+                                <input type="text" class="form-control rounded-pill"  placeholder="username">
                             </div>
                             <div class="form-group">
                                 <label for="inputPassword" class="col-form-label">Password :</label>
-                                <input type="password" class="form-control rounded-pill" id="inputPassword" placeholder="password">
+                                <input type="password" class="form-control rounded-pill"  placeholder="password">
                             </div><br>
                             <div class="col-sm-12 d-flex justify-content-center">
                                 <button class="btn btn-dark rounded-pill btn-long" type="submit" name="submit">Create Account</button>
@@ -84,7 +84,6 @@
             </div>
         </div>
     </div>
-
     <!--footer-->    
     <div class="footer footer-green fixed-bottom"></div>
 </body>

@@ -1,6 +1,6 @@
 <?php 
-    session_start();
-    include('server.php');
+session_start();
+include('server.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,7 +64,7 @@
                     <div class="card-body p-3 m-4">
                         <h2 class="text-center">Welcome back</h2>
                         <p class="text-center">Log in to your existant account</p>
-                        <form >
+                        <form action = "login_db.php" method = "post">
                             <div class="form-group">
                                 <label for="username" class="col-form-label">Username :</label>                                
                                 <input type="text" class="form-control rounded-pill" placeholder="username" name = "username">
@@ -75,7 +75,7 @@
                             </div>
                             <a href="#" class="white-link" ><p class=" text-end mt-2 ">Forget Password?</p></a>
                             <div class="col-sm-12 d-flex justify-content-center ">
-                                <button class="btn btn-dark rounded-pill btn-long" type="submit" name = "">Log In</button>
+                                <button class="btn btn-dark rounded-pill btn-long" type="submit" name = "login_user">Log In</button>
                             </div>     
                         </form>
                     </div>
