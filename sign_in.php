@@ -2,7 +2,7 @@
 session_start();
 include('server.php');
 $errors = array();
-$query = "SELECT * FROM users WHERE username = '$username'";
+$query = "SELECT * FROM login WHERE username = '$username'";
 $result = mysqli_query($conn, $query);
 ?>
 <!DOCTYPE html>
