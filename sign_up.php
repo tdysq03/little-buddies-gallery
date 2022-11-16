@@ -1,3 +1,7 @@
+<?php 
+session_start();
+include('server.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,17 +65,31 @@
                         <h2 class="text-center">Sign up</h2>
                         <p class="text-center">Already a member?<a href="sign_in.php" class="white-link"><b> Sign in</b></a></p>
                         <form action = "register_db.php" method = "post">
+                        <?php if (isset($_SESSION['error'])) :?>
+                            <div class="alert alert-warning alert-dismissible fade show round" role="alert">
+                            <h4 class="alert-heading">Please try again</h4>
+                            <?php
+                                    echo $_SESSION['error'];
+                                    unset($_SESSION['error']);
+                            ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php endif ?>
                             <div class="form-group">
                                 <label for="inputPassword" class="col-form-label">E-mail :</label>           
-                                <input type="text" class="form-control rounded-pill"  placeholder="e-mail">
+                                <input type="text" class="form-control rounded-pill" name ="email" placeholder="E-mail">
                             </div>
                             <div class="form-group">
                                 <label for="inputPassword" class="col-form-label">Username :</label>
-                                <input type="text" class="form-control rounded-pill"  placeholder="username">
+                                <input type="text" class="form-control rounded-pill" name = "username"  placeholder="Username">
                             </div>
                             <div class="form-group">
                                 <label for="inputPassword" class="col-form-label">Password :</label>
-                                <input type="password" class="form-control rounded-pill"  placeholder="password">
+                                <input type="password" class="form-control rounded-pill" name = "password1" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword" class="col-form-label">Confirm Password :</label>
+                                <input type="password" class="form-control rounded-pill" name = "password2" placeholder="Confirm password">
                             </div><br>
                             <div class="col-sm-12 d-flex justify-content-center">
                                 <button class="btn btn-dark rounded-pill btn-long" type="submit" name="submit">Create Account</button>
