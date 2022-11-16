@@ -22,16 +22,13 @@
 
 
             if (mysqli_num_rows($result) == 1) {  //เช็คว่าชื่อกับรหัสตรงกับ db ไหม
+                $_SESSION['logged_in'] = true;
                 $row = mysqli_fetch_array($result);
                 $_SESSION['username'] = $username;
                 $_SESSION['role'] = $row['role'];
-
-                if ($_SESSION['role'] == 'ADMIN') {
-                    header("location: index.php");
-                }else{
-                    header("location: sign_up.php");
-                }
-                
+                $_SESSION['email'] = $row['email'];
+                header("location: index.php");
+               
             } else {
                 array_push($errors, "Wrong Username or Password");
                 $_SESSION['error'] = "Wrong Username or Password!";

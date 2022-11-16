@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php 
+session_start();
+include('server.php');
+@ini_set('display_errors', '0');
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,8 +17,8 @@
 </head>
 <body>
 
-    <!--navbar-->
-    <nav class="navbar navbar-expand-sm navbar-dark fixed-top">
+        <!--navbar-->
+    <nav class="navbar navbar-expand-sm navbar-dark navbar-bg-pink fixed-top">
         <div class="container-fluid">
             <a href="index.php" class="navbar-brand " style="margin: -20px 0px -13px -10px;"><img src="images/logo-nav.png" height="55px"></a>
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarToggle">
@@ -34,18 +38,30 @@
                         <a href="index.php" class="nav-link rounded-pill ms-3 me-3">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a href="categories.php" class="nav-link dropdown-toggle rounded-pill ms-3 me-3" data-bs-toggle="dropdown">Categories</a>
+                        <a class="nav-link dropdown-toggle rounded-pill ms-3 me-3" data-bs-toggle="dropdown">Categories</a>
                         <ul class="dropdown-menu ">
                             <li><a href="dog.php" class="dropdown-item text-secondary">Dogs</a></li>
                             <li><a href="cat.php" class="dropdown-item text-secondary">Cats</a></li>
                         </ul>
                     </li>
-                    <!--sign in button-->
-                    <il class="nav-item">
-                        <a href="sign_in.php"><button class="btn btn-light rounded-pill text-pink ms-3 me-3" type="button">Sign In</button></a>
-                    </il>
+                    <?php if( $_SESSION['logged_in']): ?>
+                        <!--user-->
+                        <li class="nav-item dropdown">
+                            <button class="btn btn-light rounded-pill text-pink ms-3 me-3 dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['username'];?></button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <h6 class="dropdown-header">email: <?php echo $_SESSION['email'];?><br>username: <?php echo $_SESSION['username'];?></h6>
+                                <li><a href="edit_profile.php" class="dropdown-item text-secondary">Edit profile</a></li>
+                                <li><a href="logout.php" class="dropdown-item text-secondary">Sign out</a></li>
+                            </ul>
+                        </li>
+                    <?php else: ?>
+                        <il class="nav-item">
+                            <!--sign in button-->
+                            <a href="sign_in.php"><button class="btn btn-light rounded-pill text-pink ms-3 me-3" type="button">Sign In</button></a>
+                        </il>
+                    <?php endif; ?>                    
                 </ul>
-            </div> 
+            </div>  
         </div>
     </nav>
     <img src="images/welcome-1.jpg"style="width: 100%; border-bottom: 20px solid #FFB284;">

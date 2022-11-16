@@ -14,12 +14,12 @@ include('server.php');
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <title>Cat</title>
+    <title>Test</title>
 </head>
 <body>
 
-    <!--navbar-->
-    <nav class="navbar navbar-expand-sm navbar-dark navbar-bg-pink fixed-top">
+<!--navbar-->
+<nav class="navbar navbar-expand-sm navbar-dark navbar-bg-pink fixed-top">
         <div class="container-fluid">
             <a href="index.php" class="navbar-brand " style="margin: -20px 0px -13px -10px;"><img src="images/logo-nav.png" height="55px"></a>
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarToggle">
@@ -65,11 +65,70 @@ include('server.php');
             </div>  
         </div>
     </nav>
-
-    <!--content-->
+   
+        <!--content-->
+    <!--ไม่แน่ใจว่าอยากให้ทำยังไง แต่อันนี้ฟีลแบบที่ value จะ echo ข้อมูลเดิมไว้ ตอนกดเซฟจะให้ใส่รหัสผ่านเก่าอีกรอบ-->
     <div class="container" >    
-       <h1>cat</h1>
-    </div>
+        <h2 class="rounded-pill mt-3 mb-4" style="color: #C6C09c;">Edit Profile</h2><hr>
+        <div class="row">
+            <div class="col-sm-12">
+                <form>
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-form-label">E-mail :</label>           
+                        <input type="text" class="form-control rounded-pill" placeholder="e-mail" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-form-label">Username :</label>
+                        <input type="text" class="form-control rounded-pill" placeholder="username" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-form-label">Password :</label>
+                        <input type="password" class="form-control rounded-pill" placeholder="password" value="">
+                    </div><br>
+                    <div class="col-sm-12 ">
+                        <button  class="btn rounded-pill btn-long btn-blue mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button"name="submit">
+                            save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- modal (confirm saving)-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel" style="color: #DE5B6D;"><strong>Confirm saving</strong></h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="mb-2"><b>Please enter your username and password</b></p>
+                        <form action = "login_db.php" method = "post">
+                            <div class="form-group">
+                                <label for="username" class="col-form-label">Username :</label>                                
+                                <input type="text" class="form-control rounded-pill" placeholder="username" name = "username">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="col-form-label">Password :</label>
+                                <input type="password" class="form-control rounded-pill" placeholder="password" name = "password">
+                            </div>    
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-long btn-pink rounded-pill" type="submit" name = "">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--dogcat pic-->
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6 d-flex align-items-center " >
+                <img src="images/dog-edit.png" style="width: 105%;">
+            </div>
+        </div>
 
     <!--footer-->    
     <div class="footer footer-green fixed-bottom"></div>
