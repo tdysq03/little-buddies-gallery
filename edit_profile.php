@@ -67,58 +67,29 @@ include('server.php');
     </nav>
    
         <!--content-->
-    <!--ไม่แน่ใจว่าอยากให้ทำยังไง แต่อันนี้ฟีลแบบที่ value จะ echo ข้อมูลเดิมไว้ ตอนกดเซฟจะให้ใส่รหัสผ่านเก่าอีกรอบ-->
     <div class="container" >    
         <h2 class="rounded-pill mt-3 mb-4" style="color: #C6C09c;">Edit Profile</h2><hr>
         <div class="row">
             <div class="col-sm-12">
-                <form>
+                <form action = "edit_db.php" method = "post">
                     <div class="form-group">
                         <label for="inputPassword" class="col-form-label">E-mail :</label>           
-                        <input type="text" class="form-control rounded-pill" placeholder="e-mail" value="">
+                        <input type="text" class="form-control rounded-pill" name = "email" placeholder="e-mail" value="">
                     </div>
                     <div class="form-group">
                         <label for="inputPassword" class="col-form-label">Username :</label>
-                        <input type="text" class="form-control rounded-pill" placeholder="username" value="">
+                        <input type="text" class="form-control rounded-pill"  name = "username" placeholder="username" value="">
                     </div>
                     <div class="form-group">
                         <label for="inputPassword" class="col-form-label">Password :</label>
-                        <input type="password" class="form-control rounded-pill" placeholder="password" value="">
+                        <input type="password" class="form-control rounded-pill" name = "password" placeholder="password" value="">
                     </div><br>
                     <div class="col-sm-12 ">
-                        <button  class="btn rounded-pill btn-long btn-blue mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button"name="submit">
+                        <button  class="btn rounded-pill btn-long btn-blue mb-3" name = "submit_edit" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button">
                             save
                         </button>
                     </div>
                 </form>
-            </div>
-        </div>
-
-        <!-- modal (confirm saving)-->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title" id="exampleModalLabel" style="color: #DE5B6D;"><strong>Confirm saving</strong></h3>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p class="mb-2"><b>Please enter your username and password</b></p>
-                        <form action = "login_db.php" method = "post">
-                            <div class="form-group">
-                                <label for="username" class="col-form-label">Username :</label>                                
-                                <input type="text" class="form-control rounded-pill" placeholder="username" name = "username">
-                            </div>
-                            <div class="form-group">
-                                <label for="password" class="col-form-label">Password :</label>
-                                <input type="password" class="form-control rounded-pill" placeholder="password" name = "password">
-                            </div>    
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-long btn-pink rounded-pill" type="submit" name = "">Save changes</button>
-                    </div>
-                </div>
             </div>
         </div>
 

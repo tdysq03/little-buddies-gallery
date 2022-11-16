@@ -32,11 +32,11 @@
         $result = mysqli_fetch_assoc($query);
 
         if ($result) { // เช็คว่าชื่่อซ้ำไหม
-            if ($result['email'] == $email) {
+            if ($result['email'] === $email) {
                 array_push($errors, "Email already exists");
                 $_SESSION['error'] = "Email already exists";
             }
-            if ($result['username'] == $username) {
+            if ($result['username'] === $username) {
                 array_push($errors, "Username already exists");
                 $_SESSION['error'] = "Username already exists";
             }
