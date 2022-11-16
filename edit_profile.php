@@ -84,10 +84,8 @@ include('server.php');
                         <label for="inputPassword" class="col-form-label">Password :</label>
                         <input type="password" class="form-control rounded-pill" name = "password" placeholder="password" value="">
                     </div><br>
-                    <div class="col-sm-12 ">
-                        <button  class="btn rounded-pill btn-long btn-blue mb-3" name = "submit_edit" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button">
-                            save
-                        </button>
+                    <div class="col-sm-12 d-flex justify">
+                                <button class="btn btn-dark rounded-pill btn-long" type="submit" name="submit">Save</button>
                     </div>
                 </form>
             </div>
