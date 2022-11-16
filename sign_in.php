@@ -67,13 +67,12 @@ include('server.php');
 
                         <?php if (isset($_SESSION['error'])) :?>
                             <div class="alert alert-warning alert-dismissible fade show round" role="alert">
-                            <h4 class="alert-heading">
-                                <?php
+                            <h4 class="alert-heading">Please try again</h4>
+                            
+                            <?php
                                     echo $_SESSION['error'];
                                     unset($_SESSION['error']);
                                 ?>
-                            </h4>
-                            <hr>Please try again
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         <?php endif ?>

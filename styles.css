@@ -66,7 +66,10 @@ hr {
     color: white;
     background-color:  #7287A0;
 }
-
+.btn-pink{
+    background-color: #DE5B6D;
+    color: white;
+}
 /*a link*/
 a:link, a:visited {
     color: black;
