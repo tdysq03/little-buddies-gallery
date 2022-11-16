@@ -64,7 +64,6 @@ include('server.php');
                     <div class="card-body p-3 m-4">
                         <h2 class="text-center">Welcome back</h2>
                         <p class="text-center">Log in to your existant account</p>
-
                         <?php if (isset($_SESSION['error'])) :?>
                             <div class="alert alert-warning alert-dismissible fade show round" role="alert">
                             <h4 class="alert-heading">Please try again</h4>
@@ -76,7 +75,6 @@ include('server.php');
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         <?php endif ?>
-
                         <form action = "login_db.php" method = "post">
                             <div class="form-group">
                                 <label for="username" class="col-form-label">Username :</label>                                
