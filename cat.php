@@ -69,21 +69,21 @@ $result = $conn->query($sql);
     </nav>
 
     <!--content-->
-    <div class="container"><h1>cat</h1>
+    <div class="container"><h1>Cat</h1><hr><br>
         <?php 
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 echo 
                 "<div class='card mb-4' '>
                     <div class='row g-0'>
-                        <div class='col-md-4'>
+                        <div class='col-sm-4'>
                         <img src='".$row['image']."' class='img-fluid rounded-start' style='width:100%'>
                         </div>
-                        <div class='col-md-8'>
+                        <div class='col-sm-8'>
                         <div class='card-body'>
                             <h3 class='card-title'>".$row['breed']."</h3>
-                            <p class='card-text'>".$row['description']."</p>
-                            <form action='pet_info.php' method='post'>
+                            <p class='card-text text-secondary'>".$row['description']."</p>
+                            <form action='pet_info.php' method='post' target='_blank'>
                                 <button class='btn btn-pink rounded-pill' type='submit' name='pet_id' value= '".$row['pet_id']."'>more details >></button>
                             </form> 
                         </div>
