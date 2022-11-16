@@ -4,13 +4,6 @@ include('server.php');
 @ini_set('display_errors', '0');
 $sql = "SELECT * FROM pets";
 $result = $conn->query($sql);
-if(isset($_POST['pet_id'])) {
-    $pet_id=$_POST['pet_id'];
-    $result=mysqli_query($conn,"SELECT * FROM pets WHERE pet_id='$pet_id'");
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +16,7 @@ if(isset($_POST['pet_id'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <title><?php echo $row['breed']; ?></title>
+    <title><?php echo $_SESSION['breed']; ?></title>
 </head>
 <body>
 
@@ -75,37 +68,33 @@ if(isset($_POST['pet_id'])) {
         </div>
     </nav>
 
-    
+
     <!--content-->
     <div class="container">
-        
-        <?php
+        <?php  
             echo 
-                "<div class='row d-flex align-items-end'>  
-                    <div class='col-sm-6 mb-3'>
-                        <img src='".$row['image']."'style='width: 100%;'>
+            "<div class='row d-flex align-items-end'>  
+                <div class='col-sm-6 mb-3'>
+                <img src='".$_SESSION['image']."'style='width: 100%;'>
                     </div>
-                    <div class='col-sm-6 mb-3 pt-2'>
-                        <h2>".$row['breed']."</h2><hr>
-                        <p class='text-secondary'>&emsp; &emsp; ".$row['description']."</p>
-                    </div>
+                <div class='col-sm-6 mb-3 pt-2'>
+                    <h2>".$_SESSION['breed']."</h2><hr>
+                    <p class='text-secondary'>&emsp; &emsp; ".$_SESSION['description']."</p>
                 </div>
-                <div class='row'>
-                    <div class='col-sm-12'>
-                        <p class='text-secondary'>&emsp; &emsp;".$row['background']."</p>
-                    </div>
+            </div>
+            <div class='row'>
+                <div class='col-sm-12'>
+                    <p class='text-secondary'>&emsp; &emsp;".$_SESSION['background']."</p>
                 </div>
-                <div class='row p-2'>
-                    <div class='col-sm-12'>
-                        <h5 class='btn btn-blue'>ลักษณะนิสัย</h5>
-                        <p class='text-secondary mt-2'>&emsp; &emsp;".$row['property']."</p><br><br>
-                    </div><br><hr><br>
-                </div> ";    
-            $conn->close();
+            </div>
+            <div class='row p-2'>
+                <div class='col-sm-12'>
+                    <h6><span class='rounded-3 btn-blue p-1'>ลักษณะนิสัย</span></h6>
+                    <p class='text-secondary mt-3'>&emsp; &emsp;".$_SESSION['property']."</p>
+                </div><hr><br><br>
+            </div> ";    
         ?> 
     </div>
-
-
 
 
     <!--footer-->    

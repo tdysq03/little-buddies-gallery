@@ -4,6 +4,20 @@ include('server.php');
 @ini_set('display_errors', '0');
 $sql = "SELECT * FROM pets WHERE categories='CAT'";
 $result = $conn->query($sql);
+if(isset($_POST['pet_id'])) {
+    $pet_id=$_POST['pet_id'];
+    $result=mysqli_query($conn,"SELECT * FROM pets WHERE pet_id='$pet_id'");
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $_SESSION['pet_id']=$row['pet_id'];
+        $_SESSION['breed']=$row['breed'];
+        $_SESSION['description']=$row['description'];
+        $_SESSION['property']=$row['property'];
+        $_SESSION['background']=$row['background'];
+        $_SESSION['image']=$row['image'];
+    }
+    header("location: pet_info.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,7 +97,7 @@ $result = $conn->query($sql);
                         <div class='card-body'>
                             <h3 class='card-title'>".$row['breed']."</h3>
                             <p class='card-text text-secondary'>".$row['description']."</p>
-                            <form action='pet_info.php' method='post' target='_blank'>
+                            <form action='' method='post'>
                                 <button class='btn btn-pink rounded-pill' type='submit' name='pet_id' value= '".$row['pet_id']."'>more details >></button>
                             </form> 
                         </div>

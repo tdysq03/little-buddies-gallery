@@ -18,7 +18,7 @@ include('server.php');
 <body>
 
         <!--navbar-->
-    <nav class="navbar navbar-expand-sm navbar-dark navbar-bg-pink fixed-top">
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top">
         <div class="container-fluid">
             <a href="index.php" class="navbar-brand " style="margin: -20px 0px -13px -10px;"><img src="images/logo-nav.png" height="55px"></a>
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarToggle">
