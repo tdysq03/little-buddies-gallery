@@ -2,6 +2,8 @@
 session_start();
 include('server.php');
 @ini_set('display_errors', '0');
+$sql = "SELECT * FROM pets WHERE categories='DOG'";
+$result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +16,7 @@ include('server.php');
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <title>Dog</title>
+    <title>Cat</title>
 </head>
 <body>
 
@@ -67,8 +69,34 @@ include('server.php');
     </nav>
 
     <!--content-->
-    <div class="container" >    
-       <h1>dog</h1>
+    <div class="container"><h1>cat</h1>
+        <?php 
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                echo 
+                "<div class='card mb-4' '>
+                    <div class='row g-0'>
+                        <div class='col-md-4'>
+                        <img src='".$row['image']."' class='img-fluid rounded-start' style='width:100%'>
+                        </div>
+                        <div class='col-md-8'>
+                        <div class='card-body'>
+                            <h3 class='card-title'>".$row['breed']."</h3>
+                            <p class='card-text'>".$row['description']."</p>
+                            <form action='pet_info.php' method='post'>
+                                <button class='btn btn-pink rounded-pill' type='submit' name='pet_id' value= '".$row['pet_id']."'>more details >></button>
+                            </form> 
+                        </div>
+                        </div>
+                    </div>
+                </div>";
+            }
+        } else {
+            echo "0 results";
+        }
+        echo"<br><hr><br>";
+        $conn->close();
+        ?>
     </div>
 
     <!--footer-->    
