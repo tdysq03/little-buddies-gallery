@@ -27,7 +27,7 @@
             mysqli_query($conn, $sql);
             header('location: logout.php');
         } else {
-            header("location: edit.php");
+            header("location: edit_profile.php");
         }
     }
 ?>

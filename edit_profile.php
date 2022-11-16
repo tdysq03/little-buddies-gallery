@@ -72,6 +72,16 @@ include('server.php');
         <div class="row">
             <div class="col-sm-12">
                 <form action = "edit_db.php" method = "post">
+                <?php if (isset($_SESSION['error'])) :?>
+                            <div class="alert alert-warning alert-dismissible fade show round" role="alert">
+                            <h4 class="alert-heading">Please try again</h4>
+                            <?php
+                                    echo $_SESSION['error'];
+                                    unset($_SESSION['error']);
+                            ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php endif ?>
                     <div class="form-group">
                         <label for="inputPassword" class="col-form-label">E-mail :</label>           
                         <input type="text" class="form-control rounded-pill" name = "email" placeholder="e-mail" value="">
