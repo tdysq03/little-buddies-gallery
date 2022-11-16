@@ -17,6 +17,8 @@
 
         if (count($errors) == 0) {
             $password = md5($password);
+            //ชื่อtableมันไม่ตรงกันอ่ะหนุ่ม ( login.sqlที่ส่งมาในไลน์อ่ะ )
+            //$query = "SELECT * FROM login WHERE username = '$username' AND password = '$password'"; //อันนี้ใช้ได้
             $query = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
             $result = mysqli_query($conn, $query);
 
