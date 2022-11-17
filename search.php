@@ -2,6 +2,20 @@
 session_start();
 include('server.php');
 @ini_set('display_errors', '0');
+if(isset($_POST['pet_id'])) {
+    $pet_id=$_POST['pet_id'];
+    $result=mysqli_query($conn,"SELECT * FROM pets WHERE pet_id='$pet_id'");
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $_SESSION['pet_id']=$row['pet_id'];
+        $_SESSION['breed']=$row['breed'];
+        $_SESSION['description']=$row['description'];
+        $_SESSION['property']=$row['property'];
+        $_SESSION['background']=$row['background'];
+        $_SESSION['image']=$row['image'];
+    }
+    header("location: pet_info.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +84,7 @@ include('server.php');
     </nav>
 
     <!--content-->
-    <div class="container"><h1>Search Result</h1><hr><br>
+    <div class="container"><h1 style="color:#7287A0;">Search Result</h1><hr><br>
         <?php
             if(isset($_GET['search'])) {
                 $keyword = $_GET['search'];
@@ -96,26 +110,12 @@ include('server.php');
                                 </div>
                             </div>
                         </div>";
-
-                        if(isset($_POST['pet_id'])) {
-                            $pet_id=$_POST['pet_id'];
-                            $result=mysqli_query($conn,"SELECT * FROM pets WHERE pet_id='$pet_id'");
-                            if ($result->num_rows > 0) {
-                                $row = $result->fetch_assoc();
-                                $_SESSION['pet_id']=$row['pet_id'];
-                                $_SESSION['breed']=$row['breed'];
-                                $_SESSION['description']=$row['description'];
-                                $_SESSION['property']=$row['property'];
-                                $_SESSION['background']=$row['background'];
-                                $_SESSION['image']=$row['image'];
-                            }
-                            header("location: pet_info.php");
-                        }
                     }
                 } else {
                     echo "<div>No result found.</div>";
                 }
             }
+            echo"<br><hr><br>";
         ?>
     </div>
 
