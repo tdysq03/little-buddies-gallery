@@ -1,48 +1,6 @@
 <?php 
 session_start();
 include('server.php');
-@ini_set('display_errors', '0');
-?>
-<?php
-$errors = array();
-
-if (isset($_POST['login_user'])) {
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
-
-    if (empty($username)) {
-        array_push($errors, "Username is required");
-    }
-
-    if (empty($password)) {
-        array_push($errors, "Password is required");
-    }
-
-    if (count($errors) == 0) {
-        $password = md5($password);
-        $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
-        $result = mysqli_query($conn, $query);
-
-
-        if (mysqli_num_rows($result) == 1) {  //เช็คว่าชื่อกับรหัสตรงกับ db ไหม
-            $_SESSION['logged_in'] = true;
-            $row = mysqli_fetch_array($result);
-            $_SESSION['username'] = $username;
-            $_SESSION['role'] = $row['role'];
-            $_SESSION['email'] = $row['email'];
-            header("location: index.php");
-           
-        } else {
-            array_push($errors, "Wrong Username or Password");
-            $_SESSION['error'] = "Wrong Username or Password!";
-            header("location: sign_in.php");
-        }
-}else{
-    array_push($errors,"Username or password can't be blank");
-    $_SESSION['error'] = "Username or password can't be blank!";
-    header("location: sign_in.php");
-}
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,31 +38,16 @@ if (isset($_POST['login_user'])) {
                         <a href="index.php" class="nav-link rounded-pill ms-3 me-3">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle rounded-pill ms-3 me-3" data-bs-toggle="dropdown">Categories</a>
+                        <a href="categories.php" class="nav-link dropdown-toggle rounded-pill ms-3 me-3" data-bs-toggle="dropdown">Categories</a>
                         <ul class="dropdown-menu ">
                             <li><a href="dog.php" class="dropdown-item text-secondary">Dogs</a></li>
                             <li><a href="cat.php" class="dropdown-item text-secondary">Cats</a></li>
                         </ul>
                     </li>
-                    <?php if( $_SESSION['logged_in']): ?>
-                        <!--user-->
-                        <li class="nav-item dropdown">
-                            <button class="btn btn-light rounded-pill text-pink ms-3 me-3 dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['username'];?></button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <h6 class="dropdown-header">email: <?php echo $_SESSION['email'];?><br>username: <?php echo $_SESSION['username'];?></h6>
-                                <li><a href="edit_profile.php" class="dropdown-item text-secondary">Edit profile</a></li>
-                                <?php if( $_SESSION['role']=='ADMIN'): ?>
-                                    <li><a href="create_content.php" class="dropdown-item text-secondary">Add new pet</a></li>
-                                <?php endif; ?>
-                                <li><a href="logout.php" class="dropdown-item text-secondary">Sign out</a></li>
-                            </ul>
-                        </li>
-                    <?php else: ?>
-                        <il class="nav-item">
-                            <!--sign in button-->
-                            <a href="sign_in.php"><button class="btn btn-light rounded-pill text-pink ms-3 me-3" type="button">Sign In</button></a>
-                        </il>
-                    <?php endif; ?>                    
+                    <!--sign in button-->
+                    <il class="nav-item">
+                        <a href="sign_in.php"><button class="btn btn-light rounded-pill text-pink ms-3 me-3">Sign In</button></a>
+                    </il>
                 </ul>
             </div>  
         </div>
@@ -132,7 +75,7 @@ if (isset($_POST['login_user'])) {
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         <?php endif ?>
-                        <form action = "#" method = "post">
+                        <form action = "login_db.php" method = "post">
                             <div class="form-group">
                                 <label for="username" class="col-form-label">Username :</label>                                
                                 <input type="text" class="form-control rounded-pill" placeholder="username" name = "username">

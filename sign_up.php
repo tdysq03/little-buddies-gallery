@@ -46,7 +46,7 @@ include('server.php');
         if (count($errors) == 0) {
             $password = md5($password1);
 
-            $sql = "INSERT INTO users (email, username, password,role) VALUES ('$email', '$username', '$password','USER')";
+            $sql = "INSERT INTO users (email, username, password,role) VALUES ('$email', '$username', '$password',$role)";
             mysqli_query($conn, $sql);
 
             $_SESSION['username'] = $username;
