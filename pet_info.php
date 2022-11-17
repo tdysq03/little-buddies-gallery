@@ -99,9 +99,10 @@ $result = $conn->query($sql);
         ?>
             <!-- Comment Section -->
             <div>
-                <h3><span class='rounded-3 btn-dark p-1'>ความคิดเห็น</span></h3>
-                <br>
+                <h2><span class='rounded-3 btn-dark p-2'>ความคิดเห็น</span></h2>
+                <br><br>
                 <!-- Comment writing section -->
+                        <!-- if logged_in can comment -->
                 <?php if( $_SESSION['logged_in']): ?>
                     
                     <h6><span class='rounded-3 btn-info p-1 disabled'>แสดงความคิดเห็น</span></h6>
@@ -137,14 +138,27 @@ $result = $conn->query($sql);
                             $query = mysqli_query($conn, $getUsername1);
                             $usernameResult = mysqli_fetch_assoc($query);
 
+                            /* $usernameResult['username'] = ชื่อคนเม้น
+                                $row['comment'] = เม้น
+                                $row['date'] = วันที่
+                            */
+                            echo "<div class='p-3 border border-dark border-1 rounded-3' style='background-color:#E79796;'>"
+                            ."<div class='h2 b'>" . $usernameResult['username'] . "</div>"
+                            ."<div class=''>" . $row['comment'] . "</div>"
+                            ."<div>เมื่อ " . $row['date'] ."</div>";
+
+                            //ลบ + แก้ไขเม้น
+                            $usernameTemp = $_SESSION['username'];
+                            if ($usernameResult['username'] == $usernameTemp) {
+                                echo "<div style='float:right;'>
+                                    <a href='edit_comment.php?updateid=".$row['comment_id']."'>Edit</a>"
+                                    ." | "
+                                    ."<a href='delete_comment.php?deleteid=".$row['comment_id']."'>Delete</a>"
+                                    ."</div><br>";
+                            }
+
+                            echo "</div><br>";
                             
-
-
-                            echo "<div style='background-color:lightblue;'>"
-                            ."<div>" . $usernameResult['username'] . "</div>" /*ชื่อคนเม้น*/
-                            ."<div>" . $row['comment'] . "</div>" /*ข้อความ*/
-                            ."<div>เมื่อ " . $row['date'] ."</div>" /*เวลา (ไม่รู้ทำไมได้แค่วันที่)*/
-                            ."</div><br>";
                         }
                     } else {
                         echo "<div class='' style='text-align: center;'>
