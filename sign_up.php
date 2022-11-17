@@ -3,59 +3,6 @@ session_start();
 include('server.php');
 @ini_set('display_errors', '0');
 ?>
-<?php
-    $errors = array();
-    if (isset($_POST['submit'])) {
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $password1 = mysqli_real_escape_string($conn, $_POST['password1']);
-    $password2 = mysqli_real_escape_string($conn, $_POST['password2']);
-
-        if (empty($username)) {
-            array_push($errors, "Username is required");
-            $_SESSION['error'] = "Username is required";
-        }
-        if (empty($email)) {
-            array_push($errors, "Email is required");
-            $_SESSION['error'] = "Email is required";
-        }
-        if (empty($password1)) {
-            array_push($errors, "Password is required");
-            $_SESSION['error'] = "Password is required";
-        }
-        if ($password1 != $password2) {
-            array_push($errors, "The two passwords do not match");
-            $_SESSION['error'] = "The two passwords do not match";
-        }
-
-        $usercheck = "SELECT * FROM users WHERE username = '$username' OR email = '$email' LIMIT 1";
-        $query = mysqli_query($conn, $usercheck);
-        $result = mysqli_fetch_assoc($query);
-
-        if ($result) { // เช็คว่าชื่่อซ้ำไหม
-            if ($result['email'] === $email) {
-                array_push($errors, "Email already exists");
-                $_SESSION['error'] = "Email already exists";
-            }
-            if ($result['username'] === $username) {
-                array_push($errors, "Username already exists");
-                $_SESSION['error'] = "Username already exists";
-            }
-        }
-
-        if (count($errors) == 0) {
-            $password = md5($password1);
-
-            $sql = "INSERT INTO users (email, username, password,role) VALUES ('$email', '$username', '$password','USER')";
-            mysqli_query($conn, $sql);
-
-            $_SESSION['username'] = $username;
-            header('location: sign_in.php');
-    } else {
-            header("location: sign_up.php");
-     }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,7 +17,7 @@ include('server.php');
     <title>Sign up</title>
 </head>
 <body>
-     <!--navbar-->
+    <!--navbar-->
     <nav class="navbar navbar-expand-sm navbar-dark navbar-bg-pink fixed-top">
         <div class="container-fluid">
             <a href="index.php" class="navbar-brand " style="margin: -20px 0px -13px -10px;"><img src="images/logo-nav.png" height="55px"></a>
@@ -91,36 +38,20 @@ include('server.php');
                         <a href="index.php" class="nav-link rounded-pill ms-3 me-3">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle rounded-pill ms-3 me-3" data-bs-toggle="dropdown">Categories</a>
+                        <a href="categories.php" class="nav-link dropdown-toggle rounded-pill ms-3 me-3" data-bs-toggle="dropdown">Categories</a>
                         <ul class="dropdown-menu ">
                             <li><a href="dog.php" class="dropdown-item text-secondary">Dogs</a></li>
                             <li><a href="cat.php" class="dropdown-item text-secondary">Cats</a></li>
                         </ul>
                     </li>
-                    <?php if( $_SESSION['logged_in']): ?>
-                        <!--user-->
-                        <li class="nav-item dropdown">
-                            <button class="btn btn-light rounded-pill text-pink ms-3 me-3 dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['username'];?></button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <h6 class="dropdown-header">email: <?php echo $_SESSION['email'];?><br>username: <?php echo $_SESSION['username'];?></h6>
-                                <li><a href="edit_profile.php" class="dropdown-item text-secondary">Edit profile</a></li>
-                                <?php if( $_SESSION['role']=='ADMIN'): ?>
-                                    <li><a href="create_content.php" class="dropdown-item text-secondary">Add new pet</a></li>
-                                <?php endif; ?>
-                                <li><a href="logout.php" class="dropdown-item text-secondary">Sign out</a></li>
-                            </ul>
-                        </li>
-                    <?php else: ?>
-                        <il class="nav-item">
-                            <!--sign in button-->
-                            <a href="sign_in.php"><button class="btn btn-light rounded-pill text-pink ms-3 me-3" type="button">Sign In</button></a>
-                        </il>
-                    <?php endif; ?>                    
+                    <!--sign in button-->
+                    <il class="nav-item">
+                        <a href="sign_in.php"><button class="btn btn-light rounded-pill text-pink ms-3 me-3" type="button">Sign In</button></a>
+                    </il>
                 </ul>
-            </div>  
+            </div> 
         </div>
     </nav>
-    
      <!--content-->
      <div class="container">
         <div class="row">
@@ -134,7 +65,7 @@ include('server.php');
                     <div class="card-body p-3 m-4">
                         <h2 class="text-center">Sign up</h2>
                         <p class="text-center">Already a member?<a href="sign_in.php" class="white-link"><b> Sign in</b></a></p>
-                        <form action = "#" method = "post">
+                        <form action = "register_db.php" method = "post">
                         <?php if (isset($_SESSION['error'])) :?>
                             <div class="alert alert-warning alert-dismissible fade show round" role="alert">
                             <h4 class="alert-heading">Please try again</h4>
