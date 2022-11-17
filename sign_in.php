@@ -3,6 +3,47 @@ session_start();
 include('server.php');
 @ini_set('display_errors', '0');
 ?>
+<?php
+$errors = array();
+
+if (isset($_POST['login_user'])) {
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
+
+    if (empty($username)) {
+        array_push($errors, "Username is required");
+    }
+
+    if (empty($password)) {
+        array_push($errors, "Password is required");
+    }
+
+    if (count($errors) == 0) {
+        $password = md5($password);
+        $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+        $result = mysqli_query($conn, $query);
+
+
+        if (mysqli_num_rows($result) == 1) {  //เช็คว่าชื่อกับรหัสตรงกับ db ไหม
+            $_SESSION['logged_in'] = true;
+            $row = mysqli_fetch_array($result);
+            $_SESSION['username'] = $username;
+            $_SESSION['role'] = $row['role'];
+            $_SESSION['email'] = $row['email'];
+            header("location: index.php");
+           
+        } else {
+            array_push($errors, "Wrong Username or Password");
+            $_SESSION['error'] = "Wrong Username or Password!";
+            header("location: sign_in.php");
+        }
+}else{
+    array_push($errors,"Username or password can't be blank");
+    $_SESSION['error'] = "Username or password can't be blank!";
+    header("location: sign_in.php");
+}
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -91,7 +132,7 @@ include('server.php');
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         <?php endif ?>
-                        <form action = "login_db.php" method = "post">
+                        <form action = "#" method = "post">
                             <div class="form-group">
                                 <label for="username" class="col-form-label">Username :</label>                                
                                 <input type="text" class="form-control rounded-pill" placeholder="username" name = "username">
