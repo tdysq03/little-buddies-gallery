@@ -79,7 +79,38 @@ include('server.php');
 
                 if (mysqli_num_rows($result) > 0) {
                     foreach ($result as $items) {
-                        echo "<div>". $items['breed'] ."</div>";
+                        echo 
+                        "<div class='card mb-4' '>
+                            <div class='row g-0'>
+                                <div class='col-sm-4'>
+                                <img src='".$items['image']."' class='img-fluid rounded-start' style='width:100%'>
+                                </div>
+                                <div class='col-sm-8'>
+                                <div class='card-body'>
+                                    <h3 class='card-title'>".$items['breed']."</h3>
+                                    <p class='card-text text-secondary'>".$items['description']."</p>
+                                    <form action='' method='post'>
+                                        <button class='btn btn-pink rounded-pill' type='submit' name='pet_id' value= '".$items['pet_id']."'>more details >></button>
+                                    </form> 
+                                </div>
+                                </div>
+                            </div>
+                        </div>";
+
+                        if(isset($_POST['pet_id'])) {
+                            $pet_id=$_POST['pet_id'];
+                            $result=mysqli_query($conn,"SELECT * FROM pets WHERE pet_id='$pet_id'");
+                            if ($result->num_rows > 0) {
+                                $row = $result->fetch_assoc();
+                                $_SESSION['pet_id']=$row['pet_id'];
+                                $_SESSION['breed']=$row['breed'];
+                                $_SESSION['description']=$row['description'];
+                                $_SESSION['property']=$row['property'];
+                                $_SESSION['background']=$row['background'];
+                                $_SESSION['image']=$row['image'];
+                            }
+                            header("location: pet_info.php");
+                        }
                     }
                 } else {
                     echo "<div>No result found.</div>";
