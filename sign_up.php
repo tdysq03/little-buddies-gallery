@@ -3,6 +3,59 @@ session_start();
 include('server.php');
 @ini_set('display_errors', '0');
 ?>
+<?php
+    $errors = array();
+    if (isset($_POST['submit'])) {
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $password1 = mysqli_real_escape_string($conn, $_POST['password1']);
+    $password2 = mysqli_real_escape_string($conn, $_POST['password2']);
+
+        if (empty($username)) {
+            array_push($errors, "Username is required");
+            $_SESSION['error'] = "Username is required";
+        }
+        if (empty($email)) {
+            array_push($errors, "Email is required");
+            $_SESSION['error'] = "Email is required";
+        }
+        if (empty($password1)) {
+            array_push($errors, "Password is required");
+            $_SESSION['error'] = "Password is required";
+        }
+        if ($password1 != $password2) {
+            array_push($errors, "The two passwords do not match");
+            $_SESSION['error'] = "The two passwords do not match";
+        }
+
+        $usercheck = "SELECT * FROM users WHERE username = '$username' OR email = '$email' LIMIT 1";
+        $query = mysqli_query($conn, $usercheck);
+        $result = mysqli_fetch_assoc($query);
+
+        if ($result) { // เช็คว่าชื่่อซ้ำไหม
+            if ($result['email'] === $email) {
+                array_push($errors, "Email already exists");
+                $_SESSION['error'] = "Email already exists";
+            }
+            if ($result['username'] === $username) {
+                array_push($errors, "Username already exists");
+                $_SESSION['error'] = "Username already exists";
+            }
+        }
+
+        if (count($errors) == 0) {
+            $password = md5($password1);
+
+            $sql = "INSERT INTO users (email, username, password,role) VALUES ('$email', '$username', '$password','USER')";
+            mysqli_query($conn, $sql);
+
+            $_SESSION['username'] = $username;
+            header('location: sign_in.php');
+    } else {
+            header("location: sign_up.php");
+     }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,7 +134,7 @@ include('server.php');
                     <div class="card-body p-3 m-4">
                         <h2 class="text-center">Sign up</h2>
                         <p class="text-center">Already a member?<a href="sign_in.php" class="white-link"><b> Sign in</b></a></p>
-                        <form action = "register_db.php" method = "post">
+                        <form action = "#" method = "post">
                         <?php if (isset($_SESSION['error'])) :?>
                             <div class="alert alert-warning alert-dismissible fade show round" role="alert">
                             <h4 class="alert-heading">Please try again</h4>
