@@ -95,10 +95,74 @@ $result = $conn->query($sql);
                     <h6><span class='rounded-3 btn-blue p-1'>ลักษณะนิสัย</span></h6>
                     <p class='text-secondary mt-3'>&emsp; &emsp;".$_SESSION['property']."</p>
                 </div><hr><br><br>
-            </div> ";    
-        ?> 
-    </div>
+            </div>";
+        ?>
+            <!-- Comment Section -->
+            <div>
+                <h3><span class='rounded-3 btn-dark p-1'>ความคิดเห็น</span></h3>
+                <br>
+                <!-- Comment writing section -->
+                <?php if( $_SESSION['logged_in']): ?>
+                    
+                    <h6><span class='rounded-3 btn-info p-1 disabled'>แสดงความคิดเห็น</span></h6>
+                    <div> 
+                        <form action='comment.php' method='post'>
+                            <div class="form-group">
+                                <textarea class="form-control" rows="2" cols="110" name="comments" maxlength="150" placeholder="Write a comment..." required style="resize: none;"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-outline-success" name="commentSubmit">Comment!</button>
+                            </div>
+                            <br><br>
+                        </form>
+                    </div>
+                <?php endif ?>
 
+                <!-- Show Comments -->
+                <?php
+                    //get pet_id
+                    $breedTemp = $_SESSION['breed'];
+                    $getPetId = "SELECT * FROM pets WHERE breed = '$breedTemp'";
+                    $query = mysqli_query($conn, $getPetId);
+                    $result = mysqli_fetch_assoc($query);
+                    $petIdTemp = $result['pet_id'];
+                
+                    $sql = "SELECT * FROM comments WHERE pet_id = '$petIdTemp'";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            // get User's Name
+                            $userIdTemp = $row['user_id'];
+                            $getUsername1 = "SELECT * FROM users WHERE user_id = '$userIdTemp'";
+                            $query = mysqli_query($conn, $getUsername1);
+                            $usernameResult = mysqli_fetch_assoc($query);
+
+                            
+
+
+                            echo "<div style='background-color:lightblue;'>"
+                            ."<div>" . $usernameResult['username'] . "</div>" /*ชื่อคนเม้น*/
+                            ."<div>" . $row['comment'] . "</div>" /*ข้อความ*/
+                            ."<div>เมื่อ " . $row['date'] ."</div>" /*เวลา (ไม่รู้ทำไมได้แค่วันที่)*/
+                            ."</div><br>";
+                        }
+                    } else {
+                        echo "<div class='' style='text-align: center;'>
+                        <h3 class='m-2'>No Comment yet!</h3>
+                        </div>
+                        <br>
+                        
+                        ";
+                    }
+                    echo "<br><br>";
+                    
+                    
+                ?>
+
+
+            </div>  
+         
+    </div>
 
     <!--footer-->    
     <div class="footer footer-green fixed-bottom"></div>
