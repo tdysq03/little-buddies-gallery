@@ -155,6 +155,10 @@ $result = $conn->query($sql);
                                     ." | "
                                     ."<a href='delete_comment.php?deleteid=".$row['comment_id']."'>Delete</a>"
                                     ."</div><br>";
+                            } elseif ($_SESSION['role'] == 'ADMIN') {
+                                echo "<div style='float:right;'>"
+                                    ."<a href='delete_comment.php?deleteid=".$row['comment_id']."'>Delete</a>"
+                                    ."</div><br>";
                             }
 
                             echo "</div><br>";
