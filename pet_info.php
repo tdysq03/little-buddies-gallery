@@ -99,26 +99,23 @@ $result = $conn->query($sql);
         ?>
             <!-- Comment Section -->
             <div>
-                <h2><span class='rounded-3 btn-dark p-2'>ความคิดเห็น</span></h2>
-                <br><br>
                 <!-- Comment writing section -->
                         <!-- if logged_in can comment -->
                 <?php if( $_SESSION['logged_in']): ?>
-                    
-                    <h6><span class='rounded-3 btn-info p-1 disabled'>แสดงความคิดเห็น</span></h6>
+                    <h4 class="pink-text">แสดงความคิดเห็น</h4>
                     <div> 
                         <form action='comment.php' method='post'>
                             <div class="form-group">
-                                <textarea class="form-control" rows="2" cols="110" name="comments" maxlength="150" placeholder="Write a comment..." required style="resize: none;"></textarea>
+                                <textarea class="form-control" rows="5" cols="110" name="comments" maxlength="150" placeholder="Write a comment..." required style="resize: none;"></textarea>
                             </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-outline-success" name="commentSubmit">Comment!</button>
+                            <div class="form-group mt-3">
+                                <button type="submit" class="btn btn-pink" name="commentSubmit">Comment!</button>
                             </div>
                             <br><br>
                         </form>
                     </div>
                 <?php endif ?>
-
+                <h4>ความคิดเห็น</h4>
                 <!-- Show Comments -->
                 <?php
                     //get pet_id
@@ -142,10 +139,16 @@ $result = $conn->query($sql);
                                 $row['comment'] = เม้น
                                 $row['date'] = วันที่
                             */
-                            echo "<div class='p-3 border border-dark border-1 rounded-3' style='background-color:#E79796;'>"
-                            ."<div class='h2 b'>" . $usernameResult['username'] . "</div>"
-                            ."<div class=''>" . $row['comment'] . "</div>"
-                            ."<div>เมื่อ " . $row['date'] ."</div>";
+                            echo 
+                            "<div class='card mb-3'> 
+                                <div class='card-header text-secondary d-flex justify-content-between align-items-end pt-3'>
+                                    <h5>" . $usernameResult['username'] . "</h5>
+                                    <small class='text-muted'>เมื่อ ". $row['date'] ."</small>
+                                </div>
+                                <div class='card-body '>
+                                    <p class='card-text text-green pt-2 pb-4'>" . $row['comment'] ."</p> 
+                                </div>
+                            </div>";
 
                             //ลบ + แก้ไขเม้น
                             $usernameTemp = $_SESSION['username'];
