@@ -7,7 +7,7 @@ include('server.php');
     if (isset($_POST['submit'])){
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $username = mysqli_real_escape_string($conn, $_POST['username']);
-        $password = mysqli_real_escape_string($conn, $_POST['oldpassword']);
+        $password = mysqli_real_escape_string($conn, $_POST['password']);
         $newpassword = mysqli_real_escape_string($conn, $_POST['newpassword']);
 
         if (empty($username)) {
@@ -142,7 +142,7 @@ include('server.php');
                     </div>
                     <div class="form-group">
                         <label for="inputPassword" class="col-form-label">Old password :</label>
-                        <input type="password" class="form-control rounded-pill"  name = "oldpassword" placeholder="password" value="">
+                        <input type="password" class="form-control rounded-pill"  name = "password" placeholder="password" value="">
                     </div><br>
                     <div class="col-sm-12 d-flex justify">
                                 <button class="btn btn-dark rounded-pill btn-long" type="submit" name="submit">Save</button>
