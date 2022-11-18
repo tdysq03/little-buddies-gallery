@@ -2,6 +2,25 @@
 session_start();
 include('server.php');
 @ini_set('display_errors', '0');
+$success = array();
+if (isset($_POST['add'])){
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
+
+    if(($_POST['role']=='USER')){
+        $password = md5($password);
+        $sql = "INSERT INTO users (email,username,password,role) VALUES ('$email', '$username', '$password','USER')";
+        mysqli_query($conn, $sql);
+        array_push($success, "Add complete!");
+        $_SESSION['success'] = "Add complete!";
+    }else{
+        $sql = "INSERT INTO users (email,username,password,role) VALUES ('$email', '$username','$password','ADMIN')";
+        mysqli_query($conn, $sql);
+        array_push($success, "Add complete!");
+        $_SESSION['success'] = "Add complete!";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,6 +107,16 @@ include('server.php');
                     <h2 class="text-center">Add new member</h2>
                     <h5 class="text-center text-orange">เพิ่มสมาชิก</h5><hr>
                     <form action = "#" method = "post">
+                    <?php if (isset($_SESSION['success'])) :?>
+                            <div class="alert alert-warning alert-dismissible fade show round" role="alert">
+                            <h4 class="alert-heading">Congrat</h4>
+                            <?php
+                                    echo $_SESSION['success'];
+                                    unset($_SESSION['success']);
+                            ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php endif ?>
                         <div class="form-group">
                             <input type="radio" class="form-check-input " name="role" value="ADMIN" checked>
                             <label class="form-check-label me-2">Admin</label>
@@ -96,19 +125,19 @@ include('server.php');
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">E-mail :</label>           
-                            <input type="text" class="form-control" name ="" placeholder="">
+                            <input type="text" class="form-control" name ="email" placeholder="Email">
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Username :</label>           
-                            <input type="text" class="form-control" name ="" placeholder="">
+                            <input type="text" class="form-control" name ="username" placeholder="Username">
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Password :</label>           
-                            <input type="text" class="form-control" name ="" placeholder="">
+                            <input type="password" class="form-control" name ="password" placeholder="Password">
                         </div>   
                         <br>
                         <div class="col-sm-12 d-flex justify-content-center">
-                            <button class="btn btn-orange rounded-pill btn-long" type="submit" name="submit">Add</button>
+                            <button class="btn btn-orange rounded-pill btn-long" type="submit" name="add">Add</button>
                         </div>
                     </form>
                 </div>
