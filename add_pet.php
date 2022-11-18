@@ -14,9 +14,13 @@ if (isset($_POST['submit'])){
     if(($_POST['categories']=='CAT')){
         $sql = "INSERT INTO pets (breed,description, background,property,categories) VALUES ('$breed', '$description', '$background','$property','CAT')";
         mysqli_query($conn, $sql);
+        array_push($success, "Add complete!");
+        $_SESSION['success'] = "Add complete!";
     }else{
         $sql = "INSERT INTO pets (breed,description, background,property,categories) VALUES ('$breed', '$description', '$background','$property','DOG')";
         mysqli_query($conn, $sql);
+        array_push($success, "Add complete!");
+        $_SESSION['success'] = "Add complete!";
     }
 }
 ?>
@@ -105,6 +109,16 @@ if (isset($_POST['submit'])){
                     <h2 class="text-center">Add new pet</h2>
                     <h5 class="text-center text-green">เพิ่มสายพันธุ์สัตว์เลี้ยงน่ารัก</h5><hr>
                     <form action = "#" method = "post">
+                    <?php if (isset($_SESSION['success'])) :?>
+                            <div class="alert alert-warning alert-dismissible fade show round" role="alert">
+                            <h4 class="alert-heading">Congrat</h4>
+                            <?php
+                                    echo $_SESSION['success'];
+                                    unset($_SESSION['success']);
+                            ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php endif ?>
                         <div class="form-group">
                             <input type="radio" class="form-check-input " name="categories" value="CAT" checked>
                             <label class="form-check-label me-2">Cat (น้องแมว)</label>
