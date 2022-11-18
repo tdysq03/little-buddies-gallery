@@ -113,7 +113,8 @@ include('server.php');
                         "<td>".$row['property']."</td>".
                         "<td>".$row['image']."</td>".
                         //edit delete button
-                        "<td class='d-flex justify-content-around'><button class='btn btn-sm btn-secondary'>Edit</button> <button class='btn btn-sm btn-danger'>Delete</button></td>".
+                        "<td class='d-flex justify-content-around'><a class='white-link' href='edit_pet_update.php?updateid=".$row['pet_id']."'><button class='btn btn-sm btn-secondary'>Edit</button></a>
+                        <a class='white-link' href='edit_pet_delete.php?deleteid=".$row['pet_id']."'><button class='btn btn-sm btn-danger'>Delete</button></a></td>".
                         "</tr>";
                         }
                         echo "</tbody></table>";
@@ -152,7 +153,8 @@ include('server.php');
                         "<td>".$row['property']."</td>".
                         "<td>".$row['image']."</td>".
                         //edit delete button
-                        "<td class='d-flex justify-content-around'><button class='btn btn-sm btn-secondary'>Edit</button> <button class='btn btn-sm btn-danger'>Delete</button></td>".
+                        "<td class='d-flex justify-content-around'><a class='white-link' href='edit_pet_update.php?updateid=".$row['pet_id']."'><button class='btn btn-sm btn-secondary'>Edit</button></a>
+                        <a class='white-link' href='edit_pet_delete.php?deleteid=".$row['pet_id']."'><button class='btn btn-sm btn-danger'>Delete</button></a></td>".
                         "</tr>";
                         }
                         echo "</tbody></table>";
