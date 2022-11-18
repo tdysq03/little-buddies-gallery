@@ -79,15 +79,15 @@
     ?>
     <!--content-->
     <div class="container"><h1>Edit a comment</h1><hr><br>
-        <div class="card-body p-3 m-4">
+        <div class="card-body">
             <form method = "post">
                 <div class="form-group">
-                    <label for="new_comment" class="col-form-label">Your comment</label>                                
-                    <input type="text" class="form-control rounded-pill" value="<?php echo $row['comment'];?>" name="new_comment">
+                    <h4 class="text-pink">Your comment</h4>                   
+                    <textarea class="form-control text-green" rows="5" name="new_comment" maxlength="150"required><?php echo $row['comment'];?></textarea>             
                 </div>
                 <br>
                 <div class="col-sm-12 d-flex justify-content-center ">
-                    <button class="btn btn-dark rounded-pill btn-long" type="submit" name="edit_comment">Edit</button>
+                    <button class="btn btn-blue btn-long rounded-pill mb-5 " type="submit" name="edit_comment">Edit</button>
                 </div>     
             </form>
         </div>

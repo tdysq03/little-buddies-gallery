@@ -76,7 +76,7 @@ include('server.php');
         <div class="row pb-4" style="text-align: center;">
             <div class=" col-sm-1"></div>
             <div class=" col-sm-2">
-                <h3 class="m-2" style="color: #7287A0;">Popular :</h3></div>
+                <h3 class="m-2 text-blue" >Popular :</h3></div>
                 <div class=" col-sm-8 ">
                 <button class="btn btn-blue rounded-pill m-2" type="button">#หมาดำ</button>
                 <button class="btn btn-blue rounded-pill m-2" type="button">#หมาเซเว่น</button>

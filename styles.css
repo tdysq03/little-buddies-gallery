@@ -60,6 +60,12 @@ hr {
 .text-green{
     color:  #C6C09c;
 }
+.text-blue{
+    color:  #7287A0;
+}
+.text-orange{
+    color:  #FFB284;
+}
 
 /*button*/
 .btn-long{
@@ -73,6 +79,18 @@ hr {
     background-color: #DE5B6D;
     color: white;
 }
+.btn-green{
+    background-color:#C6C09c;
+    color: white;
+}
+.btn-orange{
+    background-color:#FFB284;
+    color: white;
+}
+
+
+
+
 /*a link*/
 a:link, a:visited {
     color: black;

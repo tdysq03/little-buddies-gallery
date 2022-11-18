@@ -98,22 +98,19 @@ $result = $conn->query($sql);
             </div>";
         ?>
             <!-- Comment Section -->
-            <div>
+           
                 <!-- Comment writing section -->
                         <!-- if logged_in can comment -->
                 <?php if( $_SESSION['logged_in']): ?>
-                    <h4 class="pink-text">แสดงความคิดเห็น</h4>
-                    <div> 
-                        <form action='comment.php' method='post'>
-                            <div class="form-group">
-                                <textarea class="form-control" rows="5" cols="110" name="comments" maxlength="150" placeholder="Write a comment..." required style="resize: none;"></textarea>
-                            </div>
-                            <div class="form-group mt-3">
-                                <button type="submit" class="btn btn-pink" name="commentSubmit">Comment!</button>
-                            </div>
-                            <br><br>
-                        </form>
-                    </div>
+                <div class="col-sm-12">     
+                    <form action='comment.php' method='post'>
+                        <h4>แสดงความคิดเห็น</h4>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="5" name="comments" maxlength="150" placeholder="Write a comment..." required></textarea>
+                            <button type="submit" class="btn btn-pink mt-3" name="commentSubmit">Comment!</button>
+                        </div>
+                    </form>
+                </div><br><hr><br>
                 <?php endif ?>
                 <h4>ความคิดเห็น</h4>
                 <!-- Show Comments -->
@@ -139,49 +136,47 @@ $result = $conn->query($sql);
                                 $row['comment'] = เม้น
                                 $row['date'] = วันที่
                             */
-                            echo 
-                            "<div class='card mb-3'> 
-                                <div class='card-header text-secondary d-flex justify-content-between align-items-end pt-3'>
-                                    <h5>" . $usernameResult['username'] . "</h5>
-                                    <small class='text-muted'>เมื่อ ". $row['date'] ."</small>
-                                </div>
-                                <div class='card-body '>
-                                    <p class='card-text text-green pt-2 pb-4'>" . $row['comment'] ."</p> 
-                                </div>
-                            </div>";
+                            echo
+                            "<div class='col-sm-12'>  
+                                <div class='card mb-4'> 
+                                    <div class='card-header text-secondary d-flex justify-content-between align-items-end pt-3'>
+                                        <h5>" . $usernameResult['username'] . "</h5>
+                                        <small class='text-muted'>เมื่อ ". $row['date'] ."</small>
+                                    </div>
+                                    <div class='card-body'>
+                                        <p class='card-text pt-2 pb-4 text-green'>" . $row['comment'] ."</p> 
+                                    </div>";
 
-                            //ลบ + แก้ไขเม้น
-                            $usernameTemp = $_SESSION['username'];
-                            if ($usernameResult['username'] == $usernameTemp) {
-                                echo "<div style='float:right;'>
-                                    <a href='edit_comment.php?updateid=".$row['comment_id']."'>Edit</a>"
-                                    ." | "
-                                    ."<a href='delete_comment.php?deleteid=".$row['comment_id']."'>Delete</a>"
-                                    ."</div><br>";
-                            } elseif ($_SESSION['role'] == 'ADMIN') {
-                                echo "<div style='float:right;'>"
-                                    ."<a href='delete_comment.php?deleteid=".$row['comment_id']."'>Delete</a>"
-                                    ."</div><br>";
-                            }
-
-                            echo "</div><br>";
-                            
+                                    //ลบ + แก้ไขเม้น
+                                    $usernameTemp = $_SESSION['username'];
+                                    if ($usernameResult['username'] == $usernameTemp) {
+                                    echo 
+                                    "<div class='card-footer text-end'>
+                                        <button class='btn btn-sm btn-secondary'><a class='white-link' href='edit_comment.php?updateid=".$row['comment_id']."'>Edit<a></button> <button class='btn btn-sm btn-orange'><a class='white-link' href='delete_comment.php?deleteid=".$row['comment_id']."'>Delete</a></button>
+                                    </div>";
+                                    } elseif ($_SESSION['role'] == 'ADMIN') {
+                                    echo 
+                                    "<div class='card-footer text-end'>
+                                        <button class='btn btn-sm btn-orange'><a class='white-link' href='delete_comment.php?deleteid=".$row['comment_id']."'>Delete</a></button>
+                                    </div>";
+                                    } 
+                                    echo 
+                                "</div>
+                            </div>"; 
                         }
                     } else {
-                        echo "<div class='' style='text-align: center;'>
-                        <h3 class='m-2'>No Comment yet!</h3>
-                        </div>
-                        <br>
+                        echo 
+                        "<div class='text-center'>
+                            <h3 class='text-orange'>No Comment yet!</h3>
+                        </div>";
                         
-                        ";
                     }
-                    echo "<br><br>";
-                    
-                    
+                    echo "<br><br></div>";
+   
                 ?>
 
 
-            </div>  
+         
          
     </div>
 
