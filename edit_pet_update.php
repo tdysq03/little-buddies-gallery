@@ -2,6 +2,7 @@
     session_start();
     include('server.php');
     @ini_set('display_errors', '0');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <title>Edit your comment</title>
+    <title>Edit pet</title>
 </head>
 <body>
 
@@ -72,35 +73,54 @@
     
     <?php // Get old comment to value
         $updateid = $_GET['updateid'];
-        $sql = "SELECT * FROM comments WHERE comment_id = '$updateid'";
+        $sql = "SELECT * FROM pets WHERE pet_id = '$updateid'";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
-        echo $row['comment'];
     ?>
     <!--content-->
     <div class="container"><h2 class="text-secondary">Edit a comment</h2><hr><br>
         <div class="col-sm-12">
             <form method = "post">
                 <div class="form-group">
-                    <h4 class="text-pink">Your comment</h4>                   
-                    <textarea class="form-control text-green" rows="5" name="new_comment" maxlength="150"required><?php echo $row['comment'];?></textarea>             
+                    <h4 class="text-pink">Breed</h4>                   
+                    <textarea class="form-control text-green" rows="1" name="new_breed" maxlength="150"required><?php echo $row['breed'];?></textarea>             
+                </div>
+                <div class="form-group"><br>
+                    <h4 class="text-pink">Description</h4>                   
+                    <textarea class="form-control text-green" rows="5" name="new_description" required><?php echo $row['description'];?></textarea>             
+                </div>
+                <div class="form-group"><br>
+                    <h4 class="text-pink">Background</h4>                   
+                    <textarea class="form-control text-green" rows="5" name="new_background" required><?php echo $row['background'];?></textarea>             
+                </div>
+                <div class="form-group"><br>
+                    <h4 class="text-pink">Property</h4>                   
+                    <textarea class="form-control text-green" rows="5" name="new_property" required><?php echo $row['property'];?></textarea>             
+                </div>
+                <div class="form-group"><br>
+                    <h4 class="text-pink">Image Path</h4>                   
+                    <textarea class="form-control text-green" rows="1" name="new_image" required><?php echo $row['image'];?></textarea>             
                 </div>
                 <br>
                 <div class="col-sm-12 d-flex justify-content-center ">
-                    <button class="btn btn-blue btn-long rounded-pill mb-5 " type="submit" name="edit_comment">Edit</button>
+                    <button class="btn btn-blue btn-long rounded-pill mb-5 " type="submit" name="edit_pet">Update</button>
                 </div>     
             </form>
         </div>
     </div>
 
     <?php 
-        if (isset($_POST['edit_comment'])) {
-            $newComment = mysqli_real_escape_string($conn, $_POST['new_comment']);
+        if (isset($_POST['edit_pet'])) {
+            $newBreed = mysqli_real_escape_string($conn, $_POST['new_breed']);
+            $newDescription = mysqli_real_escape_string($conn, $_POST['new_description']);
+            $newBackground = mysqli_real_escape_string($conn, $_POST['new_background']);
+            $newProperty = mysqli_real_escape_string($conn, $_POST['new_property']);
+            $newImage = mysqli_real_escape_string($conn, $_POST['new_image']);
     
-            $sql = "UPDATE comments SET comment='$newComment' WHERE comment_id=$updateid";
+            $sql = "UPDATE pets SET breed='$newBreed', description='$newDescription', background='$newBackground', property='$newProperty', image='$newImage' WHERE pet_id=$updateid";
             mysqli_query($conn, $sql);
 
-            header("Location: pet_info.php");
+            header("Location: edit_pet.php");
         }
     ?>
 
