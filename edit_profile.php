@@ -2,14 +2,12 @@
 session_start();
 include('server.php');
 @ini_set('display_errors', '0');
-session_start();
-    include('server.php');
     $errors = array();
     $nameTemp = $_SESSION['username'];
     if (isset($_POST['submit'])){
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $username = mysqli_real_escape_string($conn, $_POST['username']);
-        $password = mysqli_real_escape_string($conn, $_POST['password']);
+        $password = mysqli_real_escape_string($conn, $_POST['oldpassword']);
         $newpassword = mysqli_real_escape_string($conn, $_POST['newpassword']);
 
         if (empty($username)) {
@@ -24,12 +22,22 @@ session_start();
             array_push($errors, "Password is required");
             $_SESSION['error'] = "Password is required";
         }
-        if ($_SESSION[$password] != 'password' ){
-            array_push($errors, "Password is required");
-            $_SESSION['error'] = "Password is required";
+
+        $passcheck = "SELECT * FROM users WHERE password = '$password'";
+        $query = mysqli_query($conn, $passcheck);
+        $result = mysqli_fetch_assoc($query);
+
+        if ($result) { // เช็คว่ารหัสตรงอันเก่าไหมไหม
+            $password = md5($password);
+            if ($result['oldpassword'] != $password) {
+                array_push($errors, "password no match");
+                $_SESSION['error'] = "password no match";
+            }
         }
+
         if (count($errors) == 0) {
             $password = md5($password);
+            $newpassword = md5($newpassword);
             $sql = "UPDATE users SET  email = '$email', username = '$username', password = '$newpassword' WHERE username='$nameTemp' ";
             mysqli_query($conn, $sql);
             header('location: logout.php');
@@ -88,7 +96,7 @@ session_start();
                                 <h6 class="dropdown-header">email: <?php echo $_SESSION['email'];?><br>username: <?php echo $_SESSION['username'];?></h6>
                                 <li><a href="edit_profile.php" class="dropdown-item text-secondary">Edit profile</a></li>
                                 <?php if( $_SESSION['role']=='ADMIN'): ?>
-                                    <li><a href="add_pet.php" class="dropdown-item text-secondary">Administer</a></li>
+                                    <li><a href="create_content.php" class="dropdown-item text-secondary">Add new pet</a></li>
                                 <?php endif; ?>
                                 <li><a href="logout.php" class="dropdown-item text-secondary">Sign out</a></li>
                             </ul>
@@ -134,7 +142,7 @@ session_start();
                     </div>
                     <div class="form-group">
                         <label for="inputPassword" class="col-form-label">Old password :</label>
-                        <input type="password" class="form-control rounded-pill"  name = "password" placeholder="password" value="">
+                        <input type="password" class="form-control rounded-pill"  name = "oldpassword" placeholder="password" value="">
                     </div><br>
                     <div class="col-sm-12 d-flex justify">
                                 <button class="btn btn-dark rounded-pill btn-long" type="submit" name="submit">Save</button>
