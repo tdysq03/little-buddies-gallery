@@ -10,14 +10,15 @@ if (isset($_POST['submit']))
     $description = mysqli_real_escape_string($conn, $_POST['description']);
     $background = mysqli_real_escape_string($conn, $_POST['background']);
     $property = mysqli_real_escape_string($conn, $_POST['property']);
+
     if($_POST['categories']=='CAT'){
         $sql = "INSERT INTO pets (breed,description, background,property,categories) VALUES ('$breed', '$description', '$background','$property','CAT')";
         mysqli_query($conn, $sql);
-        
     }else{
         $sql = "INSERT INTO pets (breed,description, background,property,categories) VALUES ('$breed', '$description', '$background','$property','DOG')";
         mysqli_query($conn, $sql);
     }
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -114,19 +115,19 @@ if (isset($_POST['submit']))
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">ชื่อสายพันธุ์ :</label>           
-                            <input type="text" class="form-control" name ="breed" placeholder="breed">
+                            <input type="text" class="form-control" name ="breed" placeholder="breed" required>
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">ข้อมูลทั่วไป :</label>
-                            <textarea type="text" class="form-control" rows="5" name = "description"  placeholder="description"></textarea>
+                            <textarea type="text" class="form-control" rows="5" name = "description"  placeholder="description" required></textarea>
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">ความเป็นมา :</label>
-                            <textarea type="text" class="form-control" rows="5" name = "background"  placeholder="background"></textarea>
+                            <textarea type="text" class="form-control" rows="5" name = "background"  placeholder="background" required></textarea>
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">ลักษณะนิสัย :</label>
-                            <textarea type="text" class="form-control" rows="5" name = "property"  placeholder="property"></textarea>
+                            <textarea type="text" class="form-control" rows="5" name = "property"  placeholder="property" required></textarea>
                         </div><br>
                         <div class="col-sm-12 d-flex justify-content-center">
                             <button class="btn btn-pink rounded-pill btn-long" type="submit" name="submit">Add</button>

@@ -6,10 +6,11 @@ session_start();
     include('server.php');
     $errors = array();
     $nameTemp = $_SESSION['username'];
-    if (isset($_POST['submit'])) {
+    if (isset($_POST['submit'])){
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $username = mysqli_real_escape_string($conn, $_POST['username']);
         $password = mysqli_real_escape_string($conn, $_POST['password']);
+        $newpassword = mysqli_real_escape_string($conn, $_POST['newpassword']);
 
         if (empty($username)) {
             array_push($errors, "Username is required");
@@ -23,10 +24,13 @@ session_start();
             array_push($errors, "Password is required");
             $_SESSION['error'] = "Password is required";
         }
-
+        if ($_SESSION[$password] != 'password' ){
+            array_push($errors, "Password is required");
+            $_SESSION['error'] = "Password is required";
+        }
         if (count($errors) == 0) {
             $password = md5($password);
-            $sql = "UPDATE users SET  email = '$email', username = '$username', password = '$password' WHERE username='$nameTemp' ";
+            $sql = "UPDATE users SET  email = '$email', username = '$username', password = '$newpassword' WHERE username='$nameTemp' ";
             mysqli_query($conn, $sql);
             header('location: logout.php');
         } else {
@@ -118,15 +122,19 @@ session_start();
                         <?php endif ?>
                     <div class="form-group">
                         <label for="inputPassword" class="col-form-label">E-mail :</label>           
-                        <input type="text" class="form-control rounded-pill" name = "email" placeholder="e-mail" value="">
+                        <input type="text" class="form-control rounded-pill" name = "email" placeholder="e-mail" value=<?php echo $_SESSION['email'];?>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword" class="col-form-label">Username :</label>
-                        <input type="text" class="form-control rounded-pill"  name = "username" placeholder="username" value="">
+                        <input type="text" class="form-control rounded-pill"  name = "username" placeholder="username" value=<?php echo $_SESSION['username'];?>>
                     </div>
                     <div class="form-group">
-                        <label for="inputPassword" class="col-form-label">Password :</label>
-                        <input type="password" class="form-control rounded-pill" name = "password" placeholder="password" value="">
+                        <label for="inputPassword" class="col-form-label">New Password :</label>
+                        <input type="password" class="form-control rounded-pill" name = "newpassword" placeholder="newpassword" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-form-label">Old password :</label>
+                        <input type="password" class="form-control rounded-pill"  name = "password" placeholder="password" value="">
                     </div><br>
                     <div class="col-sm-12 d-flex justify">
                                 <button class="btn btn-dark rounded-pill btn-long" type="submit" name="submit">Save</button>
