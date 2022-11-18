@@ -44,14 +44,31 @@ include('server.php');
                             <li><a href="cat.php" class="dropdown-item text-secondary">Cats</a></li>
                         </ul>
                     </li>
-                    <!--sign in button-->
-                    <il class="nav-item">
-                        <a href="sign_in.php"><button class="btn btn-light rounded-pill text-pink ms-3 me-3" type="button">Sign In</button></a>
-                    </il>
+                    <?php if( $_SESSION['logged_in']): ?>
+                        <!--user-->
+                        <li class="nav-item dropdown">
+                            <button class="btn btn-light rounded-pill text-pink ms-3 me-3 dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['username'];?></button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <h6 class="dropdown-header">email: <?php echo $_SESSION['email'];?><br>username: <?php echo $_SESSION['username'];?></h6>
+                                <li><a href="edit_profile.php" class="dropdown-item text-secondary">Edit profile</a></li>
+                                <?php if( $_SESSION['role']=='ADMIN'): ?>
+                                    <li><a href="add_pet.php" class="dropdown-item text-secondary">Administer</a></li>
+                                <?php endif; ?>
+                                <li><a href="logout.php" class="dropdown-item text-secondary">Sign out</a></li>
+                            </ul>
+                        </li>
+                    <?php else: ?>
+                        <il class="nav-item">
+                            <!--sign in button-->
+                            <a href="sign_in.php"><button class="btn btn-light rounded-pill text-pink ms-3 me-3" type="button">Sign In</button></a>
+                        </il>
+                    <?php endif; ?>                    
                 </ul>
-            </div> 
+            </div>  
         </div>
     </nav>
+
+    
      <!--content-->
      <div class="container">
         <div class="row">

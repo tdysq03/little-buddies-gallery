@@ -135,7 +135,7 @@ a.white-link:hover, a.white-link:active {
     position: fixed;
     height: 100%;
     overflow: auto;
-    padding-top: 55px;
+    padding-top: 60px;
   }
   
   .sidebar a {
@@ -157,8 +157,7 @@ a.white-link:hover, a.white-link:active {
   
   div.content {
     margin-left: 210px;
-    padding: 0px 50px;
-    height: 1000px;
+    padding: 0px 30px;
   }
   
   @media screen and (max-width: 800px) {
