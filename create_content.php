@@ -10,10 +10,10 @@ if (isset($_POST['submit']))
     $description = mysqli_real_escape_string($conn, $_POST['description']);
     $background = mysqli_real_escape_string($conn, $_POST['background']);
     $property = mysqli_real_escape_string($conn, $_POST['property']);
-    if (isset($_POST['CAT'])) {
-
+    if($_POST['categories']=='CAT'){
         $sql = "INSERT INTO pets (breed,description, background,property,categories) VALUES ('$breed', '$description', '$background','$property','CAT')";
         mysqli_query($conn, $sql);
+        
     }else{
         $sql = "INSERT INTO pets (breed,description, background,property,categories) VALUES ('$breed', '$description', '$background','$property','DOG')";
         mysqli_query($conn, $sql);
