@@ -109,7 +109,8 @@ include('server.php');
                         "<td>".$row['username']."</td>".
                         "<td>".$row['password']."</td>".
                         "<td>".$row['role']."</td>".
-                        "<td class='d-flex justify-content-around'><button class='btn btn-sm btn-secondary'>Edit</button> <button class='btn btn-sm btn-danger'>Delete</button></td>".
+                        "<td class='d-flex justify-content-around'><a class='white-link' href='edit_user_update.php?updateid=".$row['user_id']."'><button class='btn btn-sm btn-secondary'>Edit</button></a>
+                        <a class='white-link' href='edit_user_delete.php?deleteid=".$row['user_id']."'><button class='btn btn-sm btn-danger'>Delete</button></a></td>".
                         "</tr>";
                         }
                         echo "</tbody></table>";

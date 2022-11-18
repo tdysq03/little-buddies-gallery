@@ -20,7 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <title>Edit pet</title>
+    <title>Edit User</title>
 </head>
 <body>
 
@@ -78,65 +78,70 @@
     
     <?php // Get old comment to value
         $updateid = $_GET['updateid'];
-        $sql = "SELECT * FROM pets WHERE pet_id = '$updateid'";
+        $sql = "SELECT * FROM users WHERE user_id = '$updateid'";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
     ?>
     <!--content-->
-    <div class="container"><h2 class="text-secondary">Edit a comment</h2><hr><br>
+    <div class="container"><h2 class="text-secondary">Edit User</h2><hr><br>
         <div class="col-sm-12">
             <form method = "post">
             <?php if (isset($_SESSION['success'])) :?>
-                <div class="alert alert-success alert-dismissible fade show round" role="alert">
-                        <h4 class="alert-heading">Congrat</h4>
-                         <?php
-                             echo $_SESSION['success'];
-                             unset($_SESSION['success']);
+                            <div class="alert alert-success alert-dismissible fade show round" role="alert">
+                            <h4 class="alert-heading">Congrat</h4>
+                            <?php
+                                    echo $_SESSION['success'];
+                                    unset($_SESSION['success']);
                             ?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                <?php endif ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php endif ?>
                 <div class="form-group">
-                    <h4 class="text-pink">Breed</h4>                   
-                    <textarea class="form-control text-green" rows="1" name="new_breed" maxlength="150"required><?php echo $row['breed'];?></textarea>             
+                            <input type="radio" class="form-check-input " name="role" value="ADMIN" checked>
+                            <label class="form-check-label me-2">Admin</label>
+                            <input type="radio" class="form-check-input" name="role" value="USER" checked>
+                            <label class="form-check-label">User</label>
+                </div><br>
+                <div class="form-group">
+                    <h4 class="text-pink">Email</h4>                   
+                    <input type="text" class="form-control" name ="new_email" placeholder="Email" value=<?php echo $row['email'];?>>         
                 </div>
                 <div class="form-group"><br>
-                    <h4 class="text-pink">Description</h4>                   
-                    <textarea class="form-control text-green" rows="5" name="new_description" required><?php echo $row['description'];?></textarea>             
+                    <h4 class="text-pink">Username</h4>                   
+                    <input type="text" class="form-control" name ="new_username" placeholder="Username" value=<?php echo $row['username'];?>>           
                 </div>
                 <div class="form-group"><br>
-                    <h4 class="text-pink">Background</h4>                   
-                    <textarea class="form-control text-green" rows="5" name="new_background" required><?php echo $row['background'];?></textarea>             
-                </div>
-                <div class="form-group"><br>
-                    <h4 class="text-pink">Property</h4>                   
-                    <textarea class="form-control text-green" rows="5" name="new_property" required><?php echo $row['property'];?></textarea>             
-                </div>
-                <div class="form-group"><br>
-                    <h4 class="text-pink">Image Path</h4>                   
-                    <textarea class="form-control text-green" rows="1" name="new_image" required><?php echo $row['image'];?></textarea>             
+                    <h4 class="text-pink">Password</h4>                   
+                    <input type="password" class="form-control" name ="new_password" placeholder="Password">            
                 </div>
                 <br>
                 <div class="col-sm-12 d-flex justify-content-center ">
-                    <button class="btn btn-blue btn-long rounded-pill mb-5 " type="submit" name="edit_pet">Update</button>
+                    <button class="btn btn-blue btn-long rounded-pill mb-5 " type="submit" name="edit_user">Update</button>
                 </div>     
             </form>
         </div>
     </div>
 
     <?php 
-        if (isset($_POST['edit_pet'])) {
-            $newBreed = mysqli_real_escape_string($conn, $_POST['new_breed']);
-            $newDescription = mysqli_real_escape_string($conn, $_POST['new_description']);
-            $newBackground = mysqli_real_escape_string($conn, $_POST['new_background']);
-            $newProperty = mysqli_real_escape_string($conn, $_POST['new_property']);
-            $newImage = mysqli_real_escape_string($conn, $_POST['new_image']);
-    
-            $sql = "UPDATE pets SET breed='$newBreed', description='$newDescription', background='$newBackground', property='$newProperty', image='$newImage' WHERE pet_id=$updateid";
-            mysqli_query($conn, $sql);
-            array_push($success, "Edit complete!");
-            $_SESSION['success'] = "Edit complete!";
-            header("Location: add_user.php");
+        if (isset($_POST['edit_user'])) {
+            $newemail = mysqli_real_escape_string($conn, $_POST['new_email']);
+            $newusername = mysqli_real_escape_string($conn, $_POST['new_username']);
+            $newpassword = mysqli_real_escape_string($conn, $_POST['new_password']);
+            if(($_POST['role']=='USER')){
+                $newpassword = md5($newpassword);
+                $sql = "UPDATE users SET email='$newemail', username='$newusername', password='$newpassword',role = 'USER'  WHERE user_id=$updateid";
+                mysqli_query($conn, $sql);
+                array_push($success, "Edit complete!");
+                $_SESSION['success'] = "Edit complete!";
+                header("Location: add_user.php");
+            }else{
+                $newpassword = md5($newpassword);
+                $sql = "UPDATE users SET email='$newemail', username='$newusername', password='$newpassword',role = 'ADMIN'  WHERE user_id=$updateid";
+                mysqli_query($conn, $sql);
+                array_push($success, "Edit complete!");
+                $_SESSION['success'] = "Edit complete!";
+                header("Location: add_user.php");
+            }
         }
     ?>
 

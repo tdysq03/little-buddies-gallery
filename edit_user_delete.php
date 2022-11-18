@@ -8,7 +8,7 @@
         if (isset($_GET['deleteid'])) {
             $deleteId = $_GET['deleteid'];
 
-            $sql = "DELETE FROM pets WHERE pet_id='$deleteId'";
+            $sql = "DELETE FROM users WHERE user_id='$deleteId'";
             $result = mysqli_query($conn, $sql);
         if ($result) {
             array_push($success, "Delete complete!");

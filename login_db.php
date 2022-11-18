@@ -9,10 +9,12 @@
 
         if (empty($username)) {
             array_push($errors, "Username is required");
+            $_SESSION['error'] = "Username is required!";
         }
 
         if (empty($password)) {
             array_push($errors, "Password is required");
+            $_SESSION['error'] = "password is required!";
         }
 
         if (count($errors) == 0) {
