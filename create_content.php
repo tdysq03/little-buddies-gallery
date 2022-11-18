@@ -35,10 +35,10 @@ include('server.php');
                 <!--menu-->
                 <ul class="navbar-nav ms-auto d-flex align-items-center">
                     <li class="nav-item ">
-                        <a href="index.php" class="nav-link rounded-pill ms-3 me-3">Home</a>
+                        <a href="index.php" class="nav-link btn btn-pink2 rounded-pill ms-3 me-3">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle rounded-pill ms-3 me-3" data-bs-toggle="dropdown">Categories</a>
+                        <a class="nav-link btn btn-pink2 dropdown-toggle rounded-pill ms-3 me-3" data-bs-toggle="dropdown">Categories</a>
                         <ul class="dropdown-menu ">
                             <li><a href="dog.php" class="dropdown-item text-secondary">Dogs</a></li>
                             <li><a href="cat.php" class="dropdown-item text-secondary">Cats</a></li>
@@ -52,7 +52,7 @@ include('server.php');
                                 <h6 class="dropdown-header">email: <?php echo $_SESSION['email'];?><br>username: <?php echo $_SESSION['username'];?></h6>
                                 <li><a href="edit_profile.php" class="dropdown-item text-secondary">Edit profile</a></li>
                                 <?php if( $_SESSION['role']=='ADMIN'): ?>
-                                    <li><a href="create_content.php" class="dropdown-item text-secondary">Add new pet</a></li>
+                                    <li><a href="create_content.php" class="dropdown-item text-secondary">Administer</a></li>
                                 <?php endif; ?>
                                 <li><a href="logout.php" class="dropdown-item text-secondary">Sign out</a></li>
                             </ul>

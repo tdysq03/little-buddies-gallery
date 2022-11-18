@@ -10,7 +10,7 @@
     
 }
 a.nav-link:link, a.nav-link:visited {
-  background-color: transparent;
+  background-color: #E79796;
   text-decoration: none;
 }
 a.nav-link:active {
@@ -79,6 +79,10 @@ hr {
     background-color: #DE5B6D;
     color: white;
 }
+.btn-pink{
+    background-color: #E79796;
+    color: white;
+}
 .btn-green{
     background-color:#C6C09c;
     color: white;
@@ -136,7 +140,6 @@ a.white-link:hover, a.white-link:active {
   
   .sidebar a {
     display: block;
-    color: #DE5B6D;
     padding: 16px;
     text-decoration: none;
     
