@@ -13,7 +13,7 @@ a.nav-link:link, a.nav-link:visited {
   background-color: #E79796;
   text-decoration: none;
 }
-a.nav-link:active {
+a.nav-link:active,a.nav-link:hover {
   background-color: #DE5B6D;
   text-decoration: none;
 } 
@@ -98,12 +98,12 @@ hr {
 /*a link*/
 a:link, a:visited {
     color: black;
-    background-color: transparent;
+  
     text-decoration: none;
 }
 a:hover, a:active {
     color:tomato;
-    background-color: transparent;
+
     text-decoration: none;
 }
 a.white-link:link, a.white-link:visited {

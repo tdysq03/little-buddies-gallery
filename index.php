@@ -51,10 +51,10 @@ if(isset($_POST['pet_id'])) {
                 <!--menu-->
                 <ul class="navbar-nav ms-auto d-flex align-items-center">
                     <li class="nav-item ">
-                        <a href="index.php" class="nav-link rounded-pill ms-3 me-3">Home</a>
+                        <a href="index.php" class="nav-link rounded-pill ms-2 me-2 px-3">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link btn-pink dropdown-toggle rounded-pill ms-3 me-3" data-bs-toggle="dropdown">Categories</a>
+                        <a class="nav-link btn-pink dropdown-toggle rounded-pill ms-2 me-2 px-3" data-bs-toggle="dropdown">Categories</a>
                         <ul class="dropdown-menu ">
                             <li><a href="dog.php" class="dropdown-item text-secondary">Dogs</a></li>
                             <li><a href="cat.php" class="dropdown-item text-secondary">Cats</a></li>
@@ -63,7 +63,7 @@ if(isset($_POST['pet_id'])) {
                     <?php if( $_SESSION['logged_in']): ?>
                         <!--user-->
                         <li class="nav-item dropdown">
-                            <button class="btn btn-light rounded-pill text-pink ms-3 me-3 dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['username'];?></button>
+                            <button class="btn btn-light rounded-pill text-pink ms-2 me-3 dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['username'];?></button>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <h6 class="dropdown-header">email: <?php echo $_SESSION['email'];?><br>username: <?php echo $_SESSION['username'];?></h6>
                                 <li><a href="edit_profile.php" class="dropdown-item text-secondary">Edit profile</a></li>
@@ -87,69 +87,85 @@ if(isset($_POST['pet_id'])) {
     
     
     <!--content-->
-    <div class="container" style="height: 1500px;" >    
-        <!--popular-->
-        <div class="row pb-4" >
-            <div class=" col-sm-1"></div>
-            <div class=" col-sm-2">
-                <h3 class="m-2 text-blue" >Popular</h3></div><hr>
-                <!-- <div class=" col-sm-8 ">
-                        <button class="btn btn-blue rounded-pill m-2" type="button">#หมาดำ</button>
-                        <button class="btn btn-blue rounded-pill m-2" type="button">#หมาเซเว่น</button>
-                        <button class="btn btn-blue rounded-pill m-2" type="button">#แมวส้ม</button>
-                        <button class="btn btn-blue rounded-pill m-2" type="button">#แมวเห็ด</button>
-                        <button class="btn btn-blue rounded-pill m-2" type="button">#แมววัว</button>
-                </div> -->
-                <?php
-                    $result = mysqli_query($conn, "SELECT pet_id, Count(pet_id) total FROM comments pet_id GROUP BY pet_id ORDER BY total DESC LIMIT 5");
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            $petIdTemp = $row['pet_id'];
-                            //get pet informations from pet table by pet id
-                            $resultPet = mysqli_query($conn,"SELECT * FROM pets WHERE pet_id='$petIdTemp'");
-                            $rowPet = $resultPet -> fetch_assoc();
-                                echo 
-                                "<div class='card mb-4' '>
-                                    <div class='row g-0'>
-                                        <div class='col-sm-4'>
-                                        <img src='".$rowPet['image']."' class='img-fluid rounded-start' style='width:100%'>
-                                        </div>
-                                        <div class='col-sm-8'>
-                                        <div class='card-body'>
-                                            <h3 class='card-title'>".$rowPet['breed']."</h3>
-                                            <p class='card-text text-secondary'>".$rowPet['description']."</p>
-                                            <form action='' method='post'>
-                                                <button class='btn btn-pink rounded-pill' type='submit' name='pet_id' value= '".$rowPet['pet_id']."'>more details >></button>
-                                            </form> 
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>";
-                            }
-                    } else {
-                        $petIdTemp = rand(1,10); //Random if no comment found
-                        $resultPet = mysqli_query($conn,"SELECT * FROM pets WHERE pet_id='$petIdTemp'");
-                        $rowPet = $resultPet -> fetch_assoc();
-                        echo 
-                                "<div class='card mb-4' '>
-                                    <div class='row g-0'>
-                                        <div class='col-sm-4'>
-                                        <img src='".$rowPet['image']."' class='img-fluid rounded-start' style='width:100%'>
-                                        </div>
-                                        <div class='col-sm-8'>
-                                        <div class='card-body'>
-                                            <h3 class='card-title'>".$rowPet['breed']."</h3>
-                                            <p class='card-text text-secondary'>".$rowPet['description']."</p>
-                                            <form action='' method='post'>
-                                                <button class='btn btn-pink rounded-pill' type='submit' name='pet_id' value= '".$rowPet['pet_id']."'>more details >></button>
-                                            </form> 
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>";
-                    }
-                ?>
-        </div><hr>
+    <div class="container">   
+        <div class="row bg-light" >
+            <div class="col-sm-7 text-center"><br><br>
+                <h1 class="text-blue"><strong>สมัครสมาชิกฟรี!</strong></h1>
+                <h2 class="text-green">Join our community!!</h2>
+                <a href="sign_up.php"><button class="btn btn-orange rounded-pill px-5 pt-3 my-4"><h3><strong>Sign Up here</strong></h3></button></a>
+                <p class="text-pink">สามารถร่วมแลกเปลี่ยนความคิดเห็นกับเพื่อน ๆ ที่ชื่นชอบสัตว์เลี้ยงได้ไม่จำกัด</p>
+            </div>
+            <div class="col-sm-5 d-flex align-items-end">
+                <img src='images/pet-index.png' style='width:100%'>
+            </div>
+        </div><br><hr>
+        
+        <div class="row" >
+            <div class="col-sm-6 text-center">
+            <a href="cat.php"><button class="btn btn-pink px-5 py-4 my-3"><h1>CAT</h1>กดที่นี่เพื่อทำความรู้จักกับน้องแมวสายพันธ์ต่าง ๆ</button></a>
+               
+            </div>
+            <div class="col-sm-6 text-center">
+            <a href="dog.php"><button class="btn btn-blue px-5 py-4 my-3"><h1>DOG</h1>กดที่นี่เพื่อทำความรู้จักกับน้องหมาสายพันธ์ต่าง ๆ</button></a>
+            </div>
+        </div>
+        
+        <hr><br><br>
+
+        <?php
+        $result = mysqli_query($conn, "SELECT pet_id, Count(pet_id) total FROM comments pet_id GROUP BY pet_id ORDER BY total DESC LIMIT 5");
+        if ($result->num_rows > 0) {
+            echo "<h2 class='text-pink'><strong>Popular</strong>
+            <span class='fa fa-star text-orange'></span>
+            <span class='fa fa-star text-orange'></span>
+            <span class='fa fa-star text-orange'></span></h2><br>";
+            while ($row = $result->fetch_assoc()) {
+                $petIdTemp = $row['pet_id'];
+                //get pet informations from pet table by pet id
+                $resultPet = mysqli_query($conn,"SELECT * FROM pets WHERE pet_id='$petIdTemp'");
+                $rowPet = $resultPet -> fetch_assoc();
+                echo
+                "<div class='card mb-4'>
+                    <div class='row g-0'>
+                        <div class='col-sm-4'>
+                            <img src='".$rowPet['image']."' class='img-fluid rounded-start' style='width:100%'>
+                        </div>
+                        <div class='col-sm-8'>
+                            <div class='card-body'>
+                                <h3 class='card-title'>".$rowPet['breed']."</h3>
+                                <p class='card-text text-secondary'>".$rowPet['description']."</p>
+                                <form action='' method='post'>
+                                <button class='btn btn-pink rounded-pill' type='submit' name='pet_id' value= '".$rowPet['pet_id']."'>more details >></button>
+                                </form> 
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+            }
+        } else {
+            echo "<h3 class='text-pink'>Recommend</h3>";
+            $petIdTemp = rand(1,10); //Random if no comment found
+            $resultPet = mysqli_query($conn,"SELECT * FROM pets WHERE pet_id='$petIdTemp'");
+            $rowPet = $resultPet -> fetch_assoc();
+            echo 
+                "<div class='card mb-4'>
+                    <div class='row g-0'>
+                        <div class='col-sm-4'>
+                            <img src='".$rowPet['image']."' class='img-fluid rounded-start' style='width:100%'>
+                        </div>
+                        <div class='col-sm-8'>
+                            <div class='card-body'>
+                                <h3 class='card-title'>".$rowPet['breed']."</h3>
+                                <p class='card-text text-secondary'>".$rowPet['description']."</p>
+                                <form action='' method='post'>
+                                    <button class='btn btn-pink rounded-pill' type='submit' name='pet_id' value= '".$rowPet['pet_id']."'>more details >></button>
+                                </form> 
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+        }
+        ?><hr><br>
     </div>
 
     <!--footer-->    
