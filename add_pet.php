@@ -110,7 +110,7 @@ if (isset($_POST['submit'])){
                     <h5 class="text-center text-green">เพิ่มสายพันธุ์สัตว์เลี้ยงน่ารัก</h5><hr>
                     <form action = "#" method = "post">
                     <?php if (isset($_SESSION['success'])) :?>
-                            <div class="alert alert-warning alert-dismissible fade show round" role="alert">
+                            <div class="alert alert-success alert-dismissible fade show round" role="alert">
                             <h4 class="alert-heading">Congrat</h4>
                             <?php
                                     echo $_SESSION['success'];
