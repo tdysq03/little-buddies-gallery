@@ -70,43 +70,56 @@ include('server.php');
     
 
      <!--content-->
-     <div class="container">
-        <!--add new pet-->
-        <div class="row m-4">
-            <div class="col-sm-12">
-                <h2 class="text-center">Add new pet</h2>
-                <h5 class="text-center text-pink">เพิ่มสายพันธุ์สัตว์เลี้ยงน่ารัก</h5><hr>
-                <form action = "" method = "post">
-                    <div class="form-group">
-                        <input type="radio" class="form-check-input " name="categories" value="CAT" checked>
-                        <label class="form-check-label me-2">Cat (น้องแมว)</label>
-                        <input type="radio" class="form-check-input" name="categories" value="DOG" checked>
-                        <label class="form-check-label">Dog (น้องหมา)</label>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label">ชื่อสายพันธุ์ :</label>           
-                        <input type="text" class="form-control" name ="breed" placeholder="breed">
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label">ข้อมูลทั่วไป :</label>
-                        <textarea type="text" class="form-control" rows="5" name = "description"  placeholder="description"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label">ความเป็นมา :</label>
-                        <textarea type="text" class="form-control" rows="5" name = "background"  placeholder="background"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-form-label">ลักษณะนิสัย :</label>
-                        <textarea type="text" class="form-control" rows="5" name = "property"  placeholder="property"></textarea>
-                    </div><br>
-                    <div class="col-sm-12 d-flex justify-content-center">
-                        <button class="btn btn-pink rounded-pill btn-long" type="submit" name="submit">Add</button>
-                    </div>
-                </form>
-            </div>
-        </div><br><br>   
+     <!--sidebar menu-->
+    <div class="sidebar">
+        <h6 class="text-white btn-green ps-4 py-2">Manage content</h6>
+        <a class="active btn-sm rounded-1 mx-3 ps-4" href="create_content.php">Add new pet</a>
+        <a class="btn-sm rounded-1 mx-3 ps-4" href="#">Edit/Delete pet</a>
+        <hr class="mx-3">
+        <h6 class="text-white btn-orange ps-4 py-2">Manage members</h6>
+        <a class="btn-sm rounded-1 mx-3 ps-4" href="#">Add new member</a>
+        <a class="btn-sm rounded-1 mx-3 ps-4" href="#">Edit/Delete member</a>
     </div>
+    
 
+     <!--content-->
+     <div class="content">
+        <div class="container " >
+            <div class="row m-3">
+                <div class="col-sm-12">
+                    <h2 class="text-center">Add new pet</h2>
+                    <h5 class="text-center text-pink">เพิ่มสายพันธุ์สัตว์เลี้ยงน่ารัก</h5><hr>
+                    <form action = "" method = "post">
+                        <div class="form-group">
+                            <input type="radio" class="form-check-input " name="categories" value="CAT" checked>
+                            <label class="form-check-label me-2">Cat (น้องแมว)</label>
+                            <input type="radio" class="form-check-input" name="categories" value="DOG" checked>
+                            <label class="form-check-label">Dog (น้องหมา)</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">ชื่อสายพันธุ์ :</label>           
+                            <input type="text" class="form-control" name ="breed" placeholder="breed">
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">ข้อมูลทั่วไป :</label>
+                            <textarea type="text" class="form-control" rows="5" name = "description"  placeholder="description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">ความเป็นมา :</label>
+                            <textarea type="text" class="form-control" rows="5" name = "background"  placeholder="background"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">ลักษณะนิสัย :</label>
+                            <textarea type="text" class="form-control" rows="5" name = "property"  placeholder="property"></textarea>
+                        </div><br>
+                        <div class="col-sm-12 d-flex justify-content-center">
+                            <button class="btn btn-pink rounded-pill btn-long" type="submit" name="submit">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div><br><br>   
+        </div>    
+    </div>
     <!--footer-->    
     <div class="footer footer-green fixed-bottom"></div>
 </body>
