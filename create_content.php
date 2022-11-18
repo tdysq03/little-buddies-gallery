@@ -3,6 +3,22 @@ session_start();
 include('server.php');
 @ini_set('display_errors', '0');
 ?>
+<?php
+$errors = array();
+if (isset($_POST['submit']))
+    $breed = mysqli_real_escape_string($conn, $_POST['breed']);
+    $description = mysqli_real_escape_string($conn, $_POST['description']);
+    $background = mysqli_real_escape_string($conn, $_POST['background']);
+    $property = mysqli_real_escape_string($conn, $_POST['property']);
+    if (isset($_POST['CAT'])) {
+
+        $sql = "INSERT INTO pets (breed,description, background,property,categories) VALUES ('$breed', '$description', '$background','$property','CAT')";
+        mysqli_query($conn, $sql);
+    }else{
+        $sql = "INSERT INTO pets (breed,description, background,property,categories) VALUES ('$breed', '$description', '$background','$property','DOG')";
+        mysqli_query($conn, $sql);
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -89,7 +105,7 @@ include('server.php');
                 <div class="col-sm-12">
                     <h2 class="text-center">Add new pet</h2>
                     <h5 class="text-center text-pink">เพิ่มสายพันธุ์สัตว์เลี้ยงน่ารัก</h5><hr>
-                    <form action = "" method = "post">
+                    <form action = "#" method = "post">
                         <div class="form-group">
                             <input type="radio" class="form-check-input " name="categories" value="CAT" checked>
                             <label class="form-check-label me-2">Cat (น้องแมว)</label>
