@@ -83,7 +83,7 @@
         $row = $result->fetch_assoc();
     ?>
     <!--content-->
-    <div class="container"><h2 class="text-secondary">Edit a comment</h2><hr><br>
+    <div class="container"><h2 class="text-secondary">Edit Pet</h2><hr><br>
         <div class="col-sm-12">
             <form method = "post">
             <?php if (isset($_SESSION['success'])) :?>
