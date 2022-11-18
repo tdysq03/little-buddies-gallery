@@ -152,12 +152,13 @@ $result = $conn->query($sql);
                                     if ($usernameResult['username'] == $usernameTemp) {
                                     echo 
                                     "<div class='card-footer text-end'>
-                                        <button class='btn btn-sm btn-secondary'><a class='white-link' href='edit_comment.php?updateid=".$row['comment_id']."'>Edit<a></button> <button class='btn btn-sm btn-orange'><a class='white-link' href='delete_comment.php?deleteid=".$row['comment_id']."'>Delete</a></button>
+                                        <a class='white-link' href='edit_comment.php?updateid=".$row['comment_id']."'><button class='btn btn-sm btn-secondary'>Edit</button><a>
+                                        <a class='white-link' href='delete_comment.php?deleteid=".$row['comment_id']."'><button class='btn btn-sm btn-orange'>Delete</button></a>
                                     </div>";
                                     } elseif ($_SESSION['role'] == 'ADMIN') {
                                     echo 
                                     "<div class='card-footer text-end'>
-                                        <button class='btn btn-sm btn-orange'><a class='white-link' href='delete_comment.php?deleteid=".$row['comment_id']."'>Delete</a></button>
+                                        <a class='white-link' href='delete_comment.php?deleteid=".$row['comment_id']."'><button class='btn btn-sm btn-orange'>Delete</button></a>
                                     </div>";
                                     } 
                                     echo 

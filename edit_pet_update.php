@@ -3,6 +3,10 @@
     include('server.php');
     @ini_set('display_errors', '0');
 
+    //Prevent user from access by url
+    if ($_SESSION['role'] != 'ADMIN'){
+        header("location: index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
