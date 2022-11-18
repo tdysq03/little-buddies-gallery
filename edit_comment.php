@@ -78,8 +78,8 @@
         echo $row['comment'];
     ?>
     <!--content-->
-    <div class="container"><h1>Edit a comment</h1><hr><br>
-        <div class="card-body">
+    <div class="container"><h2 class="text-secondary">Edit a comment</h2><hr><br>
+        <div class="col-sm-12">
             <form method = "post">
                 <div class="form-group">
                     <h4 class="text-pink">Your comment</h4>                   
