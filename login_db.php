@@ -19,7 +19,7 @@
             $password = md5($password);
             $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
             $result = mysqli_query($conn, $query);
-
+        }
 
             if (mysqli_num_rows($result) == 1) {  //เช็คว่าชื่อกับรหัสตรงกับ db ไหม
                 $_SESSION['logged_in'] = true;
@@ -39,5 +39,4 @@
         $_SESSION['error'] = "Username or password can't be blank!";
         header("location: sign_in.php");
     }
-}
 ?>
