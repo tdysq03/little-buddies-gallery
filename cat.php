@@ -43,8 +43,8 @@ if(isset($_POST['pet_id'])) {
             </button>
             <div class="collapse navbar-collapse" id="navbarToggle">
                 <!--search-->
-                <form class="d-flex">
-                    <input class="form-control rounded-pill ms-2 me-2" placeholder="search" type="text"  >
+                <form class="d-flex" action="search.php" method="GET">
+                    <input class="form-control rounded-pill ms-2 me-2" placeholder="search" type="text" name="search">
                     <button class="btn btn-light rounded-pill text-pink" type="submit">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>

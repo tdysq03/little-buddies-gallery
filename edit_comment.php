@@ -100,7 +100,7 @@
             $sql = "UPDATE comments SET comment='$newComment' WHERE comment_id=$updateid";
             mysqli_query($conn, $sql);
 
-            header("Location: {$_SERVER["HTTP_REFERER"]}");
+            header("Location: pet_info.php");
         }
     ?>
 
