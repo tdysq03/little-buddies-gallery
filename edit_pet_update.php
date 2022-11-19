@@ -137,7 +137,7 @@
             mysqli_query($conn, $sql);
             array_push($success, "Edit complete!");
             $_SESSION['success'] = "Edit complete!";
-            header("Location: add_user.php");
+            header("Location: edit_pet.php");
         }
     ?>
 
