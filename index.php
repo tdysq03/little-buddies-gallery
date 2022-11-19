@@ -33,7 +33,7 @@ if(isset($_POST['pet_id'])) {
 </head>
 <body>
 
-        <!--navbar-->
+    <!--navbar-->
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top">
         <div class="container-fluid">
             <a href="index.php" class="navbar-brand " style="margin: -20px 0px -13px -10px;"><img src="images/logo-nav.png" height="55px"></a>
@@ -54,7 +54,7 @@ if(isset($_POST['pet_id'])) {
                         <a href="index.php" class="nav-link rounded-pill ms-2 me-2 px-3">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link btn-pink dropdown-toggle rounded-pill ms-2 me-2 px-3" data-bs-toggle="dropdown">Categories</a>
+                        <a class="nav-link btn-pink2 dropdown-toggle rounded-pill ms-2 me-2 px-3" data-bs-toggle="dropdown">Categories</a>
                         <ul class="dropdown-menu ">
                             <li><a href="dog.php" class="dropdown-item text-secondary">Dogs</a></li>
                             <li><a href="cat.php" class="dropdown-item text-secondary">Cats</a></li>
