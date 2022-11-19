@@ -113,6 +113,18 @@ $result = $conn->query($sql);
                 </div><br><hr><br>
                 <?php endif ?>
                 <h4>ความคิดเห็น</h4>
+                <!-- Alert Box -->
+                <?php if (isset($_SESSION['success'])) :?>
+                            <div class="alert alert-success alert-dismissible fade show round" role="alert">
+                            <h4 class="alert-heading">Congrat</h4>
+                            <?php
+                                    echo $_SESSION['success'];
+                                    unset($_SESSION['success']);
+                            ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                <?php endif ?>
+
                 <!-- Show Comments -->
                 <?php
                     //get pet_id

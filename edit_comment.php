@@ -3,6 +3,7 @@
     ob_start();
     include('server.php');
     @ini_set('display_errors', '0');
+    $success = array();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,7 +101,8 @@
     
             $sql = "UPDATE comments SET comment='$newComment' WHERE comment_id=$updateid";
             mysqli_query($conn, $sql);
-
+            array_push($success, "Edit complete!");
+            $_SESSION['success'] = "Edit complete!";
             header("Location: pet_info.php");
         }
     ?>

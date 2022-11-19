@@ -2,6 +2,8 @@
     session_start();
     include('server.php');
     date_default_timezone_set("Asia/Bangkok");
+    $success = array();
+
     if (isset($_POST['commentSubmit'])) {
         //Comment
         $comment = mysqli_real_escape_string($conn, $_POST['comments']);
@@ -29,6 +31,8 @@
 
         $sql = "INSERT INTO comments (comment_id, user_id, pet_id, comment, date) VALUES ('', '$userIdTemp', '$petIdTemp', '$comment', '$dateTemp')";
         mysqli_query($conn, $sql);
+        array_push($success, "Commented!");
+        $_SESSION['success'] = "Commented!";
         header('location: pet_info.php');
     }
 ?>

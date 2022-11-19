@@ -2,6 +2,7 @@
 session_start();
 include('server.php');
 @ini_set('display_errors', '0');
+$success = array();
 ?>
 <?php
 $errors = array();

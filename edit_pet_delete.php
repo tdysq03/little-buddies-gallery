@@ -2,7 +2,7 @@
     session_start();
     include('server.php');
     @ini_set('display_errors', '0');
-
+    $success = array();
     //Prevent user from access by url
     if ($_SESSION['role'] == 'ADMIN'){
         if (isset($_GET['deleteid'])) {

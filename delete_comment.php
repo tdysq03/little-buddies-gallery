@@ -2,6 +2,7 @@
     session_start();
     include('server.php');
     @ini_set('display_errors', '0');
+    $success = array();
 
     //Prevent one from deleting others's comments
     $deleteid = $_GET['deleteid'];
@@ -19,6 +20,8 @@
             $sql = "DELETE FROM comments WHERE comment_id = '$deleteid'";
             $result = mysqli_query($conn, $sql);
             if ($result) {
+                array_push($success, "Delete complete!");
+                $_SESSION['success'] = "Delete complete!";
                 header("Location: {$_SERVER["HTTP_REFERER"]}");
             }
         }
