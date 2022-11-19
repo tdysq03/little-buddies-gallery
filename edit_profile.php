@@ -130,19 +130,19 @@ include('server.php');
                         <?php endif ?>
                     <div class="form-group">
                         <label for="inputPassword" class="col-form-label">E-mail :</label>           
-                        <input type="text" class="form-control rounded-pill" name = "email" placeholder="e-mail" value=<?php echo $_SESSION['email'];?>
+                        <input type="text" class="form-control" name = "email" placeholder="e-mail" value=<?php echo $_SESSION['email'];?>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword" class="col-form-label">Username :</label>
-                        <input type="text" class="form-control rounded-pill"  name = "username" placeholder="username" value=<?php echo $_SESSION['username'];?>>
+                        <input type="text" class="form-control"  name = "username" placeholder="username" value=<?php echo $_SESSION['username'];?>>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword" class="col-form-label">New Password :</label>
-                        <input type="password" class="form-control rounded-pill" name = "newpassword" placeholder="newpassword" value="">
+                        <input type="password" class="form-control" name = "newpassword" placeholder="newpassword" value="">
                     </div>
                     <div class="form-group">
                         <label for="inputPassword" class="col-form-label">Old password :</label>
-                        <input type="password" class="form-control rounded-pill"  name = "password" placeholder="password" value="">
+                        <input type="password" class="form-control"  name = "password" placeholder="password" value="">
                     </div><br>
                     <div class="col-sm-12 d-flex justify">
                                 <button class="btn btn-dark rounded-pill btn-long" type="submit" name="submit">Save</button>
