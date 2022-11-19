@@ -94,14 +94,13 @@ include('server.php');
                         <form action = "login_db.php" method = "post">
                             <div class="form-group">
                                 <label for="username" class="col-form-label">Username :</label>                                
-                                <input type="text" class="form-control rounded-pill" placeholder="username" name = "username">
+                                <input type="text" class="form-control" placeholder="username" name = "username">
                             </div>
                             <div class="form-group">
                                 <label for="password" class="col-form-label">Password :</label>
-                                <input type="password" class="form-control rounded-pill" placeholder="password" name = "password">
+                                <input type="password" class="form-control" placeholder="password" name = "password">
                             </div>
-                            <a href="#" class="white-link" ><p class=" text-end mt-2 ">Forget Password?</p></a>
-                            <div class="col-sm-12 d-flex justify-content-center ">
+                            <div class="col-sm-12 d-flex justify-content-center mt-4">
                                 <button class="btn btn-dark rounded-pill btn-long" type="submit" name = "login_user">Log In</button>
                             </div>     
                         </form>
