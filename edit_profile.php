@@ -96,7 +96,7 @@ include('server.php');
                                 <h6 class="dropdown-header">email: <?php echo $_SESSION['email'];?><br>username: <?php echo $_SESSION['username'];?></h6>
                                 <li><a href="edit_profile.php" class="dropdown-item text-secondary">Edit profile</a></li>
                                 <?php if( $_SESSION['role']=='ADMIN'): ?>
-                                    <li><a href="create_content.php" class="dropdown-item text-secondary">Add new pet</a></li>
+                                    <li><a href="add_pet.php" class="dropdown-item text-secondary">Add new pet</a></li>
                                 <?php endif; ?>
                                 <li><a href="logout.php" class="dropdown-item text-secondary">Sign out</a></li>
                             </ul>
