@@ -87,6 +87,16 @@ include('server.php');
                 <h2 class="text-center">All member</h2>
                 <h5 class="text-center text-orange">สมาชิกทั้งหมด</h5><hr>
                 <br>
+                <?php if (isset($_SESSION['success'])) :?>
+                            <div class="alert alert-success alert-dismissible fade show round" role="alert">
+                            <h4 class="alert-heading">Congrat</h4>
+                            <?php
+                                    echo $_SESSION['success'];
+                                    unset($_SESSION['success']);
+                            ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php endif ?>
                 <div class="col-sm-12" style="height: 500px; overflow: scroll;" >
                     <?php 
                     $sql = "SELECT * FROM users";
