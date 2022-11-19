@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    ob_start();
     include('server.php');
     @ini_set('display_errors', '0');
 
@@ -133,14 +134,14 @@
                 mysqli_query($conn, $sql);
                 array_push($success, "Edit complete!");
                 $_SESSION['success'] = "Edit complete!";
-                header("Location: add_user.php");
+                header("Location: edit_user.php");
             }else{
                 $newpassword = md5($newpassword);
                 $sql = "UPDATE users SET email='$newemail', username='$newusername', password='$newpassword',role = 'ADMIN'  WHERE user_id=$updateid";
                 mysqli_query($conn, $sql);
                 array_push($success, "Edit complete!");
                 $_SESSION['success'] = "Edit complete!";
-                header("Location: add_user.php");
+                header("Location: edit_user.php");
             }
         }
     ?>
