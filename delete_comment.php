@@ -13,8 +13,9 @@
     $result = mysqli_fetch_assoc($query);
     $resultName = $result['username'];
     
-    if (($_SESSION['role'] == 'admin') || ($userTemp == $resultName)) {
+    if (($_SESSION['role'] == 'ADMIN') || ($userTemp == $resultName)) {
         if (isset($_GET['deleteid'])){
+            $deleteid = $_GET['deleteid'];
             $sql = "DELETE FROM comments WHERE comment_id = '$deleteid'";
             $result = mysqli_query($conn, $sql);
             if ($result) {
