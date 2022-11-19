@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    ob_start();
     include('server.php');
     @ini_set('display_errors', '0');
 
