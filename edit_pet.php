@@ -173,8 +173,8 @@ include('server.php');
                     }
                     ?>
                 </div>    
-            </div> <br><br>
-        </div> 
+            </div> 
+        </div> <br><br><br>
     </div>
 
 
