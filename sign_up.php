@@ -95,19 +95,19 @@ include('server.php');
                         <?php endif ?>
                             <div class="form-group">
                                 <label for="inputPassword" class="col-form-label">E-mail :</label>           
-                                <input type="text" class="form-control rounded-pill" name ="email" placeholder="E-mail">
+                                <input type="text" class="form-control" name ="email" placeholder="E-mail">
                             </div>
                             <div class="form-group">
                                 <label for="inputPassword" class="col-form-label">Username :</label>
-                                <input type="text" class="form-control rounded-pill" name = "username"  placeholder="Username">
+                                <input type="text" class="form-control" name = "username"  placeholder="Username">
                             </div>
                             <div class="form-group">
                                 <label for="inputPassword" class="col-form-label">Password :</label>
-                                <input type="password" class="form-control rounded-pill" name = "password1" placeholder="Password">
+                                <input type="password" class="form-control" name = "password1" placeholder="Password">
                             </div>
                             <div class="form-group">
                                 <label for="inputPassword" class="col-form-label">Confirm Password :</label>
-                                <input type="password" class="form-control rounded-pill" name = "password2" placeholder="Confirm password">
+                                <input type="password" class="form-control" name = "password2" placeholder="Confirm password">
                             </div><br>
                             <div class="col-sm-12 d-flex justify-content-center">
                                 <button class="btn btn-dark rounded-pill btn-long" type="submit" name="submit">Create Account</button>
