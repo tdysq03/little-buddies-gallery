@@ -86,7 +86,7 @@ include('server.php');
             <!--cat data-->
             <div class='row'>
                 <h2 class="text-center">All Cat</h2>
-                <h5 class="text-center text-orange">น้องแมวเหมียวทั้งหมด</h5><hr>
+                <h5 class="text-center text-green">น้องแมวเหมียวทั้งหมด</h5><hr>
                 <br>
                 <div class="col-sm-12" style="height: 500px; overflow: scroll;" >
                     <?php 
@@ -126,7 +126,7 @@ include('server.php');
                 <!--dog data-->
                 <div class='row mt-5'>
                 <h2 class="text-center">All Dog</h2>
-                <h5 class="text-center text-orange">น้องหมาบ้อกแบ้กทั้งหมด</h5><hr>
+                <h5 class="text-center text-green">น้องหมาบ้อกแบ้กทั้งหมด</h5><hr>
                 <br>
                 <div class="col-sm-12" style="height: 500px; overflow: scroll;" >
                     <?php 
