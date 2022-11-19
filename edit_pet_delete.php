@@ -13,7 +13,7 @@
         if ($result) {
             array_push($success, "Delete complete!");
             $_SESSION['success'] = "Delete complete!";
-            header("location: add_user.php");
+            header("location: edit_pet.php");
         }
         }
         

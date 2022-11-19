@@ -83,6 +83,16 @@ include('server.php');
     <!--content-->
     <div class="content">
         <div class="container">
+            <?php if (isset($_SESSION['success'])) :?>
+                <div class="alert alert-success alert-dismissible fade show round" role="alert">
+                <h4 class="alert-heading">Congrat</h4>
+                <?php
+                    echo $_SESSION['success'];
+                    unset($_SESSION['success']);
+                ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif ?>
             <!--cat data-->
             <div class='row'>
                 <h2 class="text-center">All Cat</h2>
