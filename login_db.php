@@ -41,4 +41,5 @@
         $_SESSION['error'] = "Username or password can't be blank!";
         header("location: sign_in.php");
     }
+
 ?>

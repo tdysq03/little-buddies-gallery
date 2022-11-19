@@ -10,14 +10,15 @@ if (isset($_POST['submit'])){
     $description = mysqli_real_escape_string($conn, $_POST['description']);
     $background = mysqli_real_escape_string($conn, $_POST['background']);
     $property = mysqli_real_escape_string($conn, $_POST['property']);
+    $image =  mysqli_real_escape_string($conn, $_POST['image']);
 
     if(($_POST['categories']=='CAT')){
-        $sql = "INSERT INTO pets (breed,description, background,property,categories) VALUES ('$breed', '$description', '$background','$property','CAT')";
+        $sql = "INSERT INTO pets (breed,description, background,property,image,categories) VALUES ('$breed', '$description', '$background','$property','$image','CAT')";
         mysqli_query($conn, $sql);
         array_push($success, "Add complete!");
         $_SESSION['success'] = "Add complete!";
     }else{
-        $sql = "INSERT INTO pets (breed,description, background,property,categories) VALUES ('$breed', '$description', '$background','$property','DOG')";
+        $sql = "INSERT INTO pets (breed,description, background,property,image,categories) VALUES ('$breed', '$description', '$background','$property','$image','DOG')";
         mysqli_query($conn, $sql);
         array_push($success, "Add complete!");
         $_SESSION['success'] = "Add complete!";
@@ -56,10 +57,10 @@ if (isset($_POST['submit'])){
                 <!--menu-->
                 <ul class="navbar-nav ms-auto d-flex align-items-center">
                     <li class="nav-item ">
-                        <a href="index.php" class="nav-link rounded-pill ms-2 me-2 px-3">Home</a>
+                        <a href="index.php" class="nav-link btn btn-pink2 rounded-pill ms-3 me-3">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link btn-pink2 dropdown-toggle rounded-pill ms-2 me-2 px-3" data-bs-toggle="dropdown">Categories</a>
+                        <a class="nav-link btn btn-pink2 dropdown-toggle rounded-pill ms-3 me-3" data-bs-toggle="dropdown">Categories</a>
                         <ul class="dropdown-menu ">
                             <li><a href="dog.php" class="dropdown-item text-secondary">Dogs</a></li>
                             <li><a href="cat.php" class="dropdown-item text-secondary">Cats</a></li>
@@ -68,7 +69,7 @@ if (isset($_POST['submit'])){
                     <?php if( $_SESSION['logged_in']): ?>
                         <!--user-->
                         <li class="nav-item dropdown">
-                            <button class="btn btn-light rounded-pill text-pink ms-2 me-3 dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['username'];?></button>
+                            <button class="btn btn-light rounded-pill text-pink ms-3 me-3 dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['username'];?></button>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <h6 class="dropdown-header">email: <?php echo $_SESSION['email'];?><br>username: <?php echo $_SESSION['username'];?></h6>
                                 <li><a href="edit_profile.php" class="dropdown-item text-secondary">Edit profile</a></li>
@@ -140,6 +141,10 @@ if (isset($_POST['submit'])){
                         <div class="form-group">
                             <label class="col-form-label">ลักษณะนิสัย :</label>
                             <textarea type="text" class="form-control" rows="5" name = "property"  placeholder="property" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Image :</label>
+                            <textarea type="text" class="form-control" rows="1" name = "image"  placeholder="insert path here" required></textarea>
                         </div><br>
                         <div class="col-sm-12 d-flex justify-content-center">
                             <button class="btn btn-green rounded-pill btn-long" type="submit" name="submit">Add</button>
