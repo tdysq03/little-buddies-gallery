@@ -1,7 +1,7 @@
 <?php 
     session_start();
     include('server.php');
-    
+    $success = array();
     $errors = array();
 
     if (isset($_POST['submit'])) {
@@ -46,9 +46,11 @@
             $password = md5($password1);
             $sql = "INSERT INTO users (email, username, password,role) VALUES ('$email', '$username', '$password','USER')";
             mysqli_query($conn, $sql);
+            array_push($success, "Register Success");
+            $_SESSION['success'] = "Register Success";
 
             $_SESSION['username'] = $username;
-            header('location: sign_in.php');
+            header('location: sign_up.php');
         } else {
             header("location: sign_up.php");
         }

@@ -2,6 +2,7 @@
 session_start();
 include('server.php');
 @ini_set('display_errors', '0');
+$success = array();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,6 +84,16 @@ include('server.php');
                         <h2 class="text-center">Sign up</h2>
                         <p class="text-center">Already a member?<a href="sign_in.php" class="white-link"><b> Sign in</b></a></p>
                         <form action = "register_db.php" method = "post">
+                        <?php if (isset($_SESSION['success'])) :?>
+                            <div class="alert alert-success alert-dismissible fade show round" role="alert">
+                            <h4 class="alert-heading text-center">Congrat</h4>
+                            <?php
+                                    echo $_SESSION['success'];
+                                    unset($_SESSION['success']);
+                            ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php endif ?>
                         <?php if (isset($_SESSION['error'])) :?>
                             <div class="alert alert-warning alert-dismissible fade show round" role="alert">
                             <h4 class="alert-heading">Please try again</h4>
