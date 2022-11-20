@@ -86,7 +86,7 @@ $success = array();
                         <form action = "register_db.php" method = "post">
                         <?php if (isset($_SESSION['success'])) :?>
                             <div class="alert alert-success alert-dismissible fade show round" role="alert">
-                            <h4 class="alert-heading text-center">Congrat</h4>
+                            <h4 class="alert-heading">Congrat!!</h4>
                             <?php
                                     echo $_SESSION['success'];
                                     unset($_SESSION['success']);
