@@ -15,6 +15,7 @@ if (isset($_POST['add'])){
         array_push($success, "Add complete!");
         $_SESSION['success'] = "Add complete!";
     }else{
+        $password = md5($password);
         $sql = "INSERT INTO users (email,username,password,role) VALUES ('$email', '$username','$password','ADMIN')";
         mysqli_query($conn, $sql);
         array_push($success, "Add complete!");
