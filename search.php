@@ -88,7 +88,13 @@ if(isset($_POST['pet_id'])) {
         <?php
             if(isset($_GET['search'])) {
                 $keyword = $_GET['search'];
-                $query = "SELECT * FROM pets WHERE CONCAT(breed, description, property, background) LIKE '%$keyword%' ";
+                if ($keyword == 'แมว') {
+                    $query = "SELECT * FROM pets WHERE categories='CAT'";
+                } elseif ($keyword == 'หมา' || $keyword == 'สุนัข') {
+                    $query = "SELECT * FROM pets WHERE categories='DOG'";
+                } else {
+                    $query = "SELECT * FROM pets WHERE CONCAT(breed, description, property, background) LIKE '%$keyword%'";
+                }
                 $result = mysqli_query($conn, $query);
 
                 if (mysqli_num_rows($result) > 0) {
