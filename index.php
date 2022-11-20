@@ -144,7 +144,11 @@ if(isset($_POST['pet_id'])) {
             }
         } else {
             echo "<h3 class='text-pink'>Recommend</h3>";
-            $petIdTemp = rand(1,10); //Random if no comment found
+            $countPet = mysqli_query($conn,"SELECT count(1) FROM pets");
+            $rowCount = mysqli_fetch_array($countPet);
+            echo $rowCount[0];
+
+            $petIdTemp = rand(1,$rowCount[0]); //Random if no comment found
             $resultPet = mysqli_query($conn,"SELECT * FROM pets WHERE pet_id='$petIdTemp'");
             $rowPet = $resultPet -> fetch_assoc();
             echo 
